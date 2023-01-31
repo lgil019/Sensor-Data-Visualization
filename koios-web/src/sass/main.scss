@@ -2,4 +2,7 @@
 * @author Tony Erazo
 * Main.scss file is the foundation that imports all the scss files into one and transpiles the code into the main index.css file
 */
-@import './login.scss';
+
+@import "base/base";
+
+@import "pages/login";
