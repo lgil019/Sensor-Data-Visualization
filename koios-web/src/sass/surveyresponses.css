@@ -1,0 +1,112 @@
+/**
+ * @author Jonathan Diaz-Arencibia
+ */
+
+*{
+    font-family: "Times New Roman", sans serif;
+    box-sizing: border-box;
+  }
+  body {
+    margin: 3% 8%;
+  }
+  h2 {
+    text-align: center;
+    font-family: "Times New Roman", sans-serif;
+  }
+  select {
+    margin: 20px 0px 10px 0px;
+    padding: 10px 0px;
+    font-size: 18px;
+    display: block;
+    width: 100%;
+    line-height: 18px;
+  }
+  button {
+    margin: 20px 0px 10px 0px;
+    padding: 10px;
+    width: 100%;
+    font-weight: bold;
+    border-radius: 20px;
+    font-size: 18px;
+    border: 1px solid black;
+    outline: transparent;
+    display: block;
+    background-color: #f1f3de;
+    color: #00293c;
+  }
+  button:hover {
+    cursor: pointer;
+    background-color: #d01fdd;
+    border: solid 1px transparent;
+  }
+  h3 {
+    display: block;
+  }
+  #teamNames {
+    color: #00293c;
+    text-align: center;
+  }
+  h6 {
+    text-align: center;
+    color: white;
+  }
+  #voteList1Wrapper,
+  #voteList2Wrapper {
+    text-transform: capitalize;
+    margin-top: 10px;
+    background-color: #f1f1f2;
+    padding: 2px 25px;
+    display: inline-block;
+    width: 33%;
+  }
+  #main-header {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row-reverse;
+    background-color: #d0e1f9;
+    align-items: top;
+  }
+  #voterListArea {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .capitalize {
+    text-transform: capitalize;
+  }
+  #inputArea {
+    margin: 20px 0px 30px 0px;
+    background-color: #283655;
+    padding: 5% 5%;
+    box-shadow: 0px 10px 10px;
+  }
+  
+  li {
+    padding: 3px 0px;
+  }
+  
+  img {
+    width: 100%;
+    border: solid 1px rgb(22, 194, 79);
+  }
+  #graph {
+    margin: 0px 10px;
+  }
+  @media screen and (max-width: 700px) {
+    #main-header {
+      display: block;
+    }
+    #graph {
+      margin: 0px 5px;
+    }
+    #voterListArea,
+    #voteList1Wrapper,
+    #voteList2Wrapper {
+      display: block;
+      width: 100%;
+    }
+  
+    #teams-title {
+      text-align: center;
+      padding-top: 15px;
+    }
+  }
