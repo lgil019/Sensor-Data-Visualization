@@ -42,7 +42,7 @@
   h3 {
     display: block;
   }
-  #teamNames {
+  #SurveyResponses {
     color: #00293c;
     text-align: center;
   }
@@ -50,8 +50,8 @@
     text-align: center;
     color: white;
   }
-  #voteList1Wrapper,
-  #voteList2Wrapper {
+  #surveyList1Wrapper,
+  #surveyList2Wrapper {
     text-transform: capitalize;
     margin-top: 10px;
     background-color: #f1f1f2;
@@ -66,7 +66,7 @@
     background-color: #d0e1f9;
     align-items: top;
   }
-  #voterListArea {
+  #surveyListArea {
     display: flex;
     justify-content: space-evenly;
   }
@@ -98,14 +98,14 @@
     #graph {
       margin: 0px 5px;
     }
-    #voterListArea,
-    #voteList1Wrapper,
-    #voteList2Wrapper {
+    #surveyList,
+    #surveyList1Wrapper,
+    #surveyList2Wrapper {
       display: block;
       width: 100%;
     }
   
-    #teams-title {
+    #SurveyTitle {
       text-align: center;
       padding-top: 15px;
     }
