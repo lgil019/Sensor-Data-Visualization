@@ -1,14 +1,15 @@
 import './../index.css';
-
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import { Link, useParams, useNavigate } from "react-router-dom";
-
+//import Navigation from '../layout/Navigation';
 /**
  * @author Tony Erazo
  * The Login.js handles all front end functionality and initial communication witht he server
  * @returns 
  */
+
+
 
 export default function Login() {
     //Comment
@@ -43,8 +44,11 @@ export default function Login() {
                     <form onSubmit={(e) => onSubmit(e)} className="login">
 
                         
+
                         <div className="mb-3 my-2 login-field">
                             <i class="login-icon fa fa-user"></i>
+
+
                             <input
                                 type={"text"}
                                 className="form-control login-input"

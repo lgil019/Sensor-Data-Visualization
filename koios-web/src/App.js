@@ -5,13 +5,18 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Login from "./pages/Login";
+import Navbar from "./layout/Navbar";
+import SurveyData from "./pages/SurveyData";
 
 function App() {
   return (
     <div className="App">
-     <Router>
-        <Routes>
+     <Router> 
+
+     <Navbar />
+        <Routes>       
           <Route exact path="/" element={<Login />} />
+          <Route exact path="/survey" element={<SurveyData />} />
         </Routes>
      </Router>
     </div>
