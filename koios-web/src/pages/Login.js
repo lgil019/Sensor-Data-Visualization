@@ -43,7 +43,7 @@ export default function Login() {
                     <form onSubmit={(e) => onSubmit(e)} className="login">
 
                         
-                        <div className="mb-3 my-2 login__field">
+                        <div className="mb-3 my-2 login-field">
                             <i class="login-icon fa fa-user"></i>
                             <input
                                 type={"text"}
