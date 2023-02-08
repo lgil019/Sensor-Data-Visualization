@@ -17,8 +17,9 @@ def plot_line(data):
     output_file("line_plot.html")
     show(p)
 
+
 # Read the JSON data from standard input
 data = json.loads(input())
 
 # Plot the data
-plot_data(data)
+plot_line(data)
