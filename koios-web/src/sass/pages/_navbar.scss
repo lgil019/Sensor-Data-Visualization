@@ -1,6 +1,6 @@
 .navbar{
 	background: #131313;
-	height: 40px;
+	height: 60px;
 	display: flex;
 	justify-content: center;
 	align-content: center;
@@ -26,15 +26,12 @@
 		list-style: none;
 		text-align: center;
 	}
-  }
 
-  
+	&-selection{
+		height: 10px;
+	}
 
-  
- 
-  
-  .navbar_selection{
-	height: 80px;
+	
   }
   
   .navbar_links{
@@ -44,7 +41,7 @@
 	justify-content: center;
 	text-decoration: none;
 	padding: 0 1rem;
-	height: 80%;
+	height: 90%;
   }
   
   .navbar_btn{
@@ -57,6 +54,7 @@
   .navbar_links:hover{
 	background: #4837ff;
 	transition: all 0.3 ease;
+	height: 30%;
   }
   
   @media screen and (max-width: 960px){

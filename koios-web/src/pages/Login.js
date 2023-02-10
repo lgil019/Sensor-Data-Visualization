@@ -46,7 +46,7 @@ export default function Login() {
                         
 
                         <div className="mb-3 my-2 login-field">
-                            <i class="login-icon fa fa-user"></i>
+                            <i className="login-icon fa fa-user"></i>
 
 
                             <input
