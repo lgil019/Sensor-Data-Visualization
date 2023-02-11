@@ -322,7 +322,7 @@ a {
   }
 
   .menu-secondary-exit {
-
+    position: absolute;
   }
 
   .menu-secondary-exit-active {
