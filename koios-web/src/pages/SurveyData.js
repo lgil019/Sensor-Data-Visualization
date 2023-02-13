@@ -1,58 +1,71 @@
 import './../index.css';
 import React from 'react';
 import {useState} from "react";
-export default function SurveyData({selected, setSelected}) {
-  const[isActive, setIsActive] = useState(false);
-  const options = ['Survey 1', 'Survey 2', 'Survey 3']
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import mysql from "mysql";
 
-  const[first, setFirst] = useState (true);
-  const[second, setSecond] = useState (true);
+export default function surveyData() {
+
+  const connection = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: 'password',
+    database: 'database_name',
+  });
   
-  const handleChange=(data)=>{
-    if(data=="first")
-    {
-      if(first==true){
-        console.log(data,"our value")
-      }
-      setFirst(!first)
-    }
-      if(data=="Second"){
-        if(second==true){
-          console.log(data, "out value")
+  function App() {
+    const [data, setData] = useState([]);
+  
+    useEffect(() => {
+      async function fetchData() {
+        try {
+          const connection = await mysql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            password: 'CS5454',
+            database: 'Local instance MySQL80',
+          });
+  
+          const [rows, fields] = await connection.query('SELECT * FROM table_name');
+          setData(rows);
+  
+          connection.end();
+        } catch (error) {
+          console.error(error);
         }
-      setSecond(!second)
       }
+  
+      fetchData();
+    }, []);
+
+  return (
+    <>
+    <DropdownButton id="dropdown-basic-button" title="Surveys">
+      <Dropdown.Item href="#/action-1">Survey 1</Dropdown.Item>
+      <Dropdown.Item href="#/action-2">Survey 2</Dropdown.Item>
+      <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+    </DropdownButton>  
     
+    <DropdownButton id="dropdown-basic-button2" title="Version">
+      <Dropdown.Item href="#/action-1">Version 1</Dropdown.Item>
+      <Dropdown.Item href="#/action-2">Version 2</Dropdown.Item>
+      <Dropdown.Item href="#/action-3">Version 3</Dropdown.Item>
+    </DropdownButton>
+
+
+ <DropdownButton id="dropdown-basic-button3" title="Time Interval">
+      <Dropdown.Item href="#/action-1">Monthly</Dropdown.Item>
+      <Dropdown.Item href="#/action-2">Weekly</Dropdown.Item>
+      <Dropdown.Item href="#/action-3">Daily</Dropdown.Item>
+    </DropdownButton>
+</>
+  );
+
   }
 
 
-    return (
-        <div className = "dropdown">
-         <div className = "dropdown-button" onClick={(e) => setIsActive(!setIsActive)}>Choose Survey
-         <span className ="fa fa-caret-down"></span>
-         </div>
-         {isActive && ( 
-          <div className = "dropdown-content">
-           {options.map(option => (
-            <div 
-            onClick={e => {
-              setSelected(option);
-              setIsActive(false);
-            }}
-            className = "dropdown-item">{option}</div>
-            ))}
-            </div>
-         )}
-         <input type ="checkbox" value={first} onChange={()=>handleChange("first")}/> Positive 
-         <input type ="checkbox" value={first} onChange={()=>handleChange("second")}/> Negative
-         </div>
-        
-       
-    );
-
-
-  
-    };
     
 
     
