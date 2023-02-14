@@ -1,12 +1,19 @@
 package com.koios.server.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * The Users class represents an SQL table entry of all the collection of registered users on the server
  * @author Tony Erazo
  *
  */
+@Entity
 public class Users {
 
+	@Id
+	@GeneratedValue
 	/**
 	 * The user's email
 	 */
