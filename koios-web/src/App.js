@@ -5,6 +5,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import {useState} from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from "./pages/Login";
 import Navbar from './layout/Navbar';
 import SurveyData from './pages/SurveyData';
@@ -17,7 +18,7 @@ function App() {
     
      <Router>
      <Navbar/>
-     <surveyData selected={selected} setSelected={setSelected}/>
+     <surveyData/>
         <Routes>
            <Route exact path="/" element={<Login />} />
            <Route exact path="/survey" element={<SurveyData />} />

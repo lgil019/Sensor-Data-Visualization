@@ -1,7 +1,13 @@
+//Made by Jonathan Diaz-Arencibia originally
+
 import React, {useState, useEffect} from "react";
 import {Container} from "react-bootstrap";
 
+
+export default function SurveyTest() {
+
 function SurveyTest() {
+
     const [category, setID] = useState([]);
 
     useEffect (() => {
@@ -45,6 +51,9 @@ function SurveyTest() {
             </Container>
         </React.Fragment>
     );
+
 }
 
-export default SurveyTest;
+}
+
+
