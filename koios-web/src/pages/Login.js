@@ -27,22 +27,8 @@ export default function Login() {
         setUser({...user,[e.target.name]:e.target.value})
     };
 
-    const onSubmit = async (e) => {
-       e.preventDefault();
-       await axios.post("http://localhost:8080/login", user)
-       .then(response=> {
-            console.log("response data: ", response.data);
-            
-            //TODO handle login errors here
-            if(response.data.login_error == '0') {
-                console.log("Login Success!");
-
-                //Navigate to dashboard
-            }
-            else {
-                document.getElementById("error_msg").className = "";
-            }
-       });
+    const onSubmit = (e) => {
+       
         //TODO submit login data to the server then send a router to the dashboard
         //navigate("/login");
     };

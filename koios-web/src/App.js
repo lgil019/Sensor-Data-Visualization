@@ -9,7 +9,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from "./pages/Login";
 import Navbar from './layout/Navbar';
 import SurveyData from './pages/SurveyData';
-import SurveyTest from './pages/SurveyTest';
 
 function App() {
   const [selected, setSelected] = useState("");
