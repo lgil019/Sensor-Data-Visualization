@@ -8,37 +8,6 @@ import mysql from "mysql";
 
 export default function surveyData() {
 
-  const connection = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'database_name',
-  });
-  
-  function App() {
-    const [data, setData] = useState([]);
-  
-    useEffect(() => {
-      async function fetchData() {
-        try {
-          const connection = await mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: 'CS5454',
-            database: 'Local instance MySQL80',
-          });
-  
-          const [rows, fields] = await connection.query('SELECT * FROM table_name');
-          setData(rows);
-  
-          connection.end();
-        } catch (error) {
-          console.error(error);
-        }
-      }
-  
-      fetchData();
-    }, []);
 
   return (
     <>
