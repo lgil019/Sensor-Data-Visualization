@@ -3,14 +3,11 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import { Link, useParams, useNavigate } from "react-router-dom";
 //import Navigation from '../layout/Navigation';
+
 /**
  * @author Tony Erazo
- * The Login.js handles all front end functionality and initial communication witht he server
- * @returns 
+ * The Register.js handles all front end functionality and communication with the server to submit an account registration request
  */
-
-
-
 export default function Login() {
     //Comment
     let navigate = useNavigate();
@@ -27,11 +24,9 @@ export default function Login() {
         setUser({...user,[e.target.name]:e.target.value})
     };
 
-const onSubmit = (e) => {
-
     const onSubmit = async (e) => {
        e.preventDefault();
-       await axios.post("http://localhost:8080/login", user)
+       await axios.post("http://localhost:8080/register", user)
        .then(response=> {
             console.log("response data: ", response.data);
             
@@ -40,13 +35,11 @@ const onSubmit = (e) => {
                 console.log("Login Success!");
 
                 //Navigate to dashboard
-                navigate('/dashboard');
             }
             else {
                 document.getElementById("error_msg").className = "";
             }
        });
-
         //TODO submit login data to the server then send a router to the dashboard
         //navigate("/login");
     };
@@ -59,47 +52,41 @@ const onSubmit = (e) => {
         <div className="container">
             <div className="row screen">
                 <div className="screen-content">
-                    <form onSubmit={(e) => onSubmit(e)} className="login">
+                    <form onSubmit={(e) => onSubmit(e)} className="register">
 
                         
 
-                        <div className="mb-3 my-2 login-field">
-                            <i className="login-icon fa fa-user"></i>
-
-
+                        <div className="mb-3 my-2 register-field">
                             <input
                                 type={"text"}
-                                className="form-control login-input"
+                                className="form-control register-input"
                                 placeholder="E-mail"
                                 name="email"
                                 onChange={(e) => onInputChange(e)}/>
                         </div>
 
-                        <div className="mb-3 my-2 login-field">
-                            <i class="login-icon fa fa-lock"></i>
+                        <div className="mb-3 my-2 register-field">
                             <input
                                 type={"password"}
-                                className="form-control login-input"
+                                className="form-control register-input"
                                 placeholder="Password"
                                 name="password"
                                 onChange={(e) => onInputChange(e)}/>
                         </div>
 
-
-                        <button className="btn btn-success mx-2 button login-submit" onClick={(e) => login(e, user.email, user.password)}>
-                            <span class="button-text">Log In Now</span>
-                            <i class="button-icon fa fa-chevron-right"></i>
-                        </button>
-                        <Link className="btn btn-primary mx-2" to="/register/">Register</Link>
+                        <Link className="btn btn-success mx-2" to="/register/">Register</Link>
+                        <Link className="btn btn-danger mx-2 button register-submit" to="/">
+                            <span class="button-text">Cancel</span>
+                        </Link>
                         <br/><h4 id="error_msg" className="d-none">Invalid Email or Password.</h4>
                     </form>
 
-                    <div class="social-login">
+                    <div class="social-register">
 				        <h3>log in via</h3>
                         <div class="social-icons">
-                            <a href="#" class="social-login__icon fa fa-instagram"></a>
-                            <a href="#" class="social-login__icon fa fa-facebook"></a>
-                            <a href="#" class="social-login__icon fa fa-twitter"></a>
+                            <a href="#" class="social-register__icon fa fa-instagram"></a>
+                            <a href="#" class="social-register__icon fa fa-facebook"></a>
+                            <a href="#" class="social-register__icon fa fa-twitter"></a>
                         </div>
                     </div>
                 </div>
@@ -112,4 +99,4 @@ const onSubmit = (e) => {
             </div>
         </div>
     )
-}}
+}
