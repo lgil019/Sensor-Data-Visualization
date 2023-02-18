@@ -10,29 +10,30 @@ export default function surveyData() {
 
 
   return (
-    <>
-    <DropdownButton id="dropdown-basic-button" title="Surveys">
-      <Dropdown.Item href="#/action-1">Survey 1</Dropdown.Item>
-      <Dropdown.Item href="#/action-2">Survey 2</Dropdown.Item>
-      <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-    </DropdownButton>  
-    
-    <DropdownButton id="dropdown-basic-button2" title="Version">
-      <Dropdown.Item href="#/action-1">Version 1</Dropdown.Item>
-      <Dropdown.Item href="#/action-2">Version 2</Dropdown.Item>
-      <Dropdown.Item href="#/action-3">Version 3</Dropdown.Item>
-    </DropdownButton>
+    <div className="container">
+      <div id="dropdown-basic-button" title="Surveys">
+        <li href="#/action-1">Survey 1</li>
+        <li href="#/action-2">Survey 2</li>
+        <li href="#/action-3">Something else</li>
+      </div>  
+  
+      <div id="dropdown-basic-button2" title="Version">
+        <li href="#/action-1">Version 1</li>
+        <li href="#/action-2">Version 2</li>
+        <li href="#/action-3">Version 3</li>
+      </div>
 
 
- <DropdownButton id="dropdown-basic-button3" title="Time Interval">
-      <Dropdown.Item href="#/action-1">Monthly</Dropdown.Item>
-      <Dropdown.Item href="#/action-2">Weekly</Dropdown.Item>
-      <Dropdown.Item href="#/action-3">Daily</Dropdown.Item>
-    </DropdownButton>
-</>
-  );
+      <div id="dropdown-basic-button3" title="Time Interval">
+        <li href="#/action-1">Monthly</li>
+        <li href="#/action-2">Weekly</li>
+        <li href="#/action-3">Daily</li>
+      </div>
+    </div>
+  ); 
 
-  }
+}
+
 
 
     
