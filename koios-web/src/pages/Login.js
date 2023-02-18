@@ -56,9 +56,7 @@ export default function Login() {
                 document.getElementById("error_msg").className = "";
             }
        });
-        //TODO submit login data to the server then send a router to the dashboard
-        //navigate("/login");
-    };
+
 
     const login = (e, email, password) => {
         console.log('Logging in... email:', email, 'pass', password);
