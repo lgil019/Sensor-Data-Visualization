@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import './index.css';
 import React from 'react'
@@ -16,8 +15,7 @@ function App() {
     <div className="App">
     
      <Router>
-     <Navbar/>
-     <surveyData/>
+        <Navbar/>
         <Routes>
            <Route exact path="/" element={<Login />} />
            <Route exact path="/survey" element={<SurveyData />} />
