@@ -19,7 +19,19 @@ export default function Login() {
         email:"",
         password:"",
 
-    })
+    });
+
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+    
+    signUpButton.addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+    });
+    
+    signInButton.addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+    });
 
     const{email, password}=user;
 
@@ -38,7 +50,7 @@ export default function Login() {
                 console.log("Login Success!");
 
                 //Navigate to dashboard
-                navigate('/dashboard');
+                navigate('/survey');
             }
             else {
                 document.getElementById("error_msg").className = "";
@@ -53,59 +65,50 @@ export default function Login() {
     };
 
     return(
-        <div className="container">
-            <div className="row screen">
-                <div className="screen-content">
-                    <form onSubmit={(e) => onSubmit(e)} className="login">
-
-                        
-
-                        <div className="mb-3 my-2 login-field">
-                            <i className="login-icon fa fa-user"></i>
-
-
-                            <input
-                                type={"text"}
-                                className="form-control login-input"
-                                placeholder="E-mail"
-                                name="email"
-                                onChange={(e) => onInputChange(e)}/>
-                        </div>
-
-                        <div className="mb-3 my-2 login-field">
-                            <i class="login-icon fa fa-lock"></i>
-                            <input
-                                type={"password"}
-                                className="form-control login-input"
-                                placeholder="Password"
-                                name="password"
-                                onChange={(e) => onInputChange(e)}/>
-                        </div>
-
-
-                        <button className="btn btn-success mx-2 button login-submit" onClick={(e) => login(e, user.email, user.password)}>
-                            <span class="button-text">Log In Now</span>
-                            <i class="button-icon fa fa-chevron-right"></i>
-                        </button>
-                        <Link className="btn btn-primary mx-2" to="/register/">Register</Link>
-                        <br/><h4 id="error_msg" className="d-none">Invalid Email or Password.</h4>
-                    </form>
-
-                    <div class="social-login">
-				        <h3>log in via</h3>
-                        <div class="social-icons">
-                            <a href="#" class="social-login__icon fa fa-instagram"></a>
-                            <a href="#" class="social-login__icon fa fa-facebook"></a>
-                            <a href="#" class="social-login__icon fa fa-twitter"></a>
-                        </div>
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                <form action="#">
+                    <h1>Create Account</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <span>or use your email for registration</span>
+                    <input type="text" placeholder="Name" />
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                    <button>Sign Up</button>
+                </form>
+            </div>
+            <div class="form-container sign-in-container">
+                <form action="#">
+                    <h1>Sign in</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <span>or use your account</span>
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                    <a href="#">Forgot your password?</a>
+                    <button>Sign In</button>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Welcome Back!</h1>
+                        <p>To keep connected with us please login with your personal info</p>
+                        <button class="ghost" id="signIn">Sign In</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Hello, Friend!</h1>
+                        <p>Enter your personal details and start journey with us</p>
+                        <button class="ghost" id="signUp">Sign Up</button>
                     </div>
                 </div>
-                <div class="screen-background">
-                    <span class="screen-background__shape screen-background__shape4"></span>
-                    <span class="screen-background__shape screen-background__shape3"></span>		
-                    <span class="screen-background__shape screen-background__shape2"></span>
-                    <span class="screen-background__shape screen-background__shape1"></span>
-		        </div>		
             </div>
         </div>
     )
