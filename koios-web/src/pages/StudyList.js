@@ -2,9 +2,16 @@
 
 import React, {useState, useEffect} from "react";
 import {Container} from "react-bootstrap";
+import {Navigate } from "react-router-dom";
+
 
 export default function StudyList() {
     const [category, setID] = useState([]);
+    const [goToSurvey, setGoToSurvey] = React.useState(false);
+
+    if (goToSurvey) {
+        return <Navigate to = "/SurveyList" />;
+    }
 
     useEffect (() => {
         const getID = async () => {
@@ -41,7 +48,7 @@ export default function StudyList() {
                                         <td> {getID.category_Organization}</td>
                                         <td> {getID.category_Date}</td>
                                         <td> {getID.category_Status}</td>
-                                        <td><button href="" className="btn btn-success"> View </button> </td>
+                                        <td><button onClick={() => setGoToSurvey(true)}> View </button> </td>
 
                                     </tr>
                                 ))}
