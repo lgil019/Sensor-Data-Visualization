@@ -8,7 +8,7 @@ export default function SurveyList() {
 
     useEffect (() => {
         const getID = async () => {
-            const res = await fetch (""); //Link for sql database
+            const res = await fetch ("http://localhost:8080/SurveyList"); //Link for sql database
             const getdata = await res.json();
             setID(getdata);
         };
@@ -31,7 +31,6 @@ export default function SurveyList() {
                                     <th>StartDate</th>
                                     <th>EndDate</th>
                                     <th>Version</th>
-                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>

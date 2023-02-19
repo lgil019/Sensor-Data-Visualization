@@ -15,7 +15,7 @@ export default function StudyList() {
 
     useEffect (() => {
         const getID = async () => {
-            const res = await fetch (""); //Link for sql database
+            const res = await fetch ("http://localhost:8080/StudyList"); //Link for sql database
             const getdata = await res.json();
             setID(getdata);
         };
