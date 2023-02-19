@@ -7,13 +7,13 @@ export default function Navbar() {
   return(
 
     <nav className='navbar'>
-    <div className = "navbar-container"> 
-    <ul className = "navbar-menu">
-     <li><Link className = "navbar_links" to="/pages">Home</Link></li>
-     <li><NavLink className = "navbar_links" to="/survey">Surveys</NavLink></li>
-     <li><NavLink className = "navbar_links" to="/">Login</NavLink></li>
-    </ul>
-   </div>
+      <div className = "navbar-container"> 
+        <ul className = "navbar-menu">
+          <li><Link className = "navbar_links" to="/pages">Home</Link></li>
+          <li><NavLink className = "navbar_links" to="/survey">Surveys</NavLink></li>
+          <li><NavLink className = "navbar_links" to="/">Login</NavLink></li>
+        </ul>
+      </div>
  </nav>  
   )
 }
