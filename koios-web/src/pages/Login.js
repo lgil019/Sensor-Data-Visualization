@@ -74,7 +74,7 @@ export default function Login() {
 
     return(
         <div className="container" onLoad={loadPage()}>
-            <div className="main-container" id="main-container">
+            <div className="main-container mx-auto" id="main-container">
                 <div className="form-container sign-up-container">
                     <form action="#">
                         <h1>Create Account</h1>
