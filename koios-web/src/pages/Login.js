@@ -62,7 +62,7 @@ export default function Login() {
                 navigate('/survey');
             }
             else {
-                document.getElementById("error_msg").className = "";
+               // document.getElementById("error_msg").className = "";
             }
        });
     }
