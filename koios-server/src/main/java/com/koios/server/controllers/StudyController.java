@@ -30,7 +30,7 @@ public class StudyController {
 	 * Gets a list of all the {@code Study} entries from the database
 	 * @return {@code List}
 	 */
-	@GetMapping("/studylist")
+	@GetMapping("/study/studylist")
 	public List<Study> getStudyList() {
 		System.out.println("Retrieving all studies...");
 		return studyRepository.findAll();

@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import Navbar from './layout/Navbar';
 import SurveyData from './pages/SurveyData';
 import SurveyList from './pages/SurveyList';
-import StudyList from './pages/StudyList';
+import StudyList from './pages/study/StudyList';
 
 function App() {
   const [selected, setSelected] = useState("");
@@ -20,7 +20,7 @@ function App() {
         <Routes>
            <Route exact path="/" element={<Login />} />
            <Route exact path="/survey" element={<SurveyData />} />
-           <Route exact path="/studylist" element={<StudyList />} />
+           <Route exact path="/study/studylist" element={<StudyList />} />
         </Routes>
      </Router>
     </div>

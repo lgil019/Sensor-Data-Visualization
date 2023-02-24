@@ -25,7 +25,7 @@ export default function Login() {
 
             //Assume they're logged in
             if(localStorage.getItem("email")) {
-                navigate('/studylist');
+                navigate('/study/studylist');
             }
 
             const signUpButton = document.getElementById('signUp');

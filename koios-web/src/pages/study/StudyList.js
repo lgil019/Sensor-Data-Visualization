@@ -1,11 +1,13 @@
-//Made by Jonathan Diaz-Arencibia
-
-import './../index.css';
 import React, {useState, useEffect} from "react";
 import {Navigate, useNavigate} from "react-router-dom";
 import axios from 'axios';
+import { Container, Table, Button } from 'react-bootstrap';
 
-
+/**
+ * Displays a list of all the studies within the koios database.
+ * @author Tony Erazo
+ * @returns StudyList
+ */
 export default function StudyList() {
 
         /**
@@ -33,7 +35,7 @@ export default function StudyList() {
     }]);
 
     const loadData = async () => {
-        const result = await axios.get(`http://localhost:8080/studylist`);
+        const result = await axios.get(`http://localhost:8080/study/studylist`);
         setStudies(result.data);
         console.log(result.data);
     }
@@ -43,35 +45,37 @@ export default function StudyList() {
     }, []);
 
     return (
-        <div className="container">
+        <Container>
 
 
 
-            <table className="table table-dark">
+            <Table table-dark>
                 <thead>
                     <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Organization</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">State</th>
-                        <th scope="col">View Survey</th>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Organization</th>
+                        <th>Date</th>
+                        <th>State</th>
+                        <th>View Study</th>
                     </tr>
                 </thead>
                 <tbody>
                     {studies.map((study, index) => (
                         <tr key={index}>
-                        <th scope="row" key={index}>
+                        <th key={index}>
                             {index + 1}
                         </th>
                         <td>{study.name}</td>
                         <td>{study.organization}</td>
                         <td>{study.creationTime}</td>
                         <td>{study.state}</td>
+                        <td><Button>View</Button></td>
                         </tr>
                     ))}
                 </tbody>
-            </table>
-        </div>
+            </Table>
+            
+        </Container>
     );
 }
