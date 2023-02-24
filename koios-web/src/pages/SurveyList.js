@@ -1,52 +1,21 @@
 //Made by Jonathan Diaz-Arencibia
 
 import React, {useState, useEffect} from "react";
-import {Container} from "react-bootstrap";
+import axios from 'axios';
+import {useNavigate} from "react-router-dom";
+
 
 export default function SurveyList() {
-    const [category, setID] = useState([]);
+    let navigate = useNavigate();
 
-    useEffect (() => {
-        const getID = async () => {
-            const res = await fetch ("http://localhost:8080/SurveyList"); //Link for sql database
-            const getdata = await res.json();
-            setID(getdata);
-        };
-
-        getID();
-    }, []);
+    //Assume they're not logged in
+    if(!localStorage.getItem("email")) {
+        navigate('/login');
+    }
 
     return (
-        <React.Fragment>
-            <Container>
-                <div className="row">
-                    <div className="col-sm-8 text-success">
-                        <h5 className="p-3 fw-bold text-white">
-                            Test Survey Page
-                        </h5>
-                        <table className="table table-bordered text-white">
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>StartDate</th>
-                                    <th>EndDate</th>
-                                    <th>Version</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {category.map((getID) => (
-                                    <tr key = {getID.category_id}>
-                                        <td> {getID.category_Title}</td>
-                                        <td> {getID.category_StartDate}</td>
-                                        <td> {getID.category_EndDate}</td>
-                                        <td> {getID.category_Version}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </Container>
-        </React.Fragment>
+        <div className="className" >
+
+        </div>
     );
 }

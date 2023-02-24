@@ -1,62 +1,77 @@
 //Made by Jonathan Diaz-Arencibia
 
+import './../index.css';
 import React, {useState, useEffect} from "react";
-import {Container} from "react-bootstrap";
-import {Navigate } from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
+import axios from 'axios';
 
 
 export default function StudyList() {
-    const [category, setID] = useState([]);
-    const [goToSurvey, setGoToSurvey] = React.useState(false);
 
-    if (goToSurvey) {
-        return <Navigate to = "/SurveyList" />;
+        /**
+     * Create the study object here
+     */
+    const[studies, setStudies] = useState([{
+        "id": 0,
+        "name": "",
+        "organization": "",
+        "description": "",
+        "creation_time_zone_offset": 0,
+        "state": 0,
+        "instruction": "",
+        "creationTime": "",
+        "userEmailPrefix": "",
+        "fitbitIntegrationEnabled": 0,
+        "modificationTime": "0",
+        "modificationTimeZoneOffset": null,
+        "createdBy": "",
+        "studyType": 0,
+        "iconUrl": "",
+        "inviteCode": "",
+        "anonymizeData": 0,
+        "userCounter": 0
+    }]);
+
+    const loadData = async () => {
+        const result = await axios.get(`http://localhost:8080/studylist`);
+        setStudies(result.data);
+        console.log(result.data);
     }
 
-    useEffect (() => {
-        const getID = async () => {
-            const res = await fetch ("http://localhost:8080/StudyList"); //Link for sql database
-            const getdata = await res.json();
-            setID(getdata);
-        };
-
-        getID();
+    useEffect(()=>{
+        loadData();
     }, []);
 
     return (
-        <React.Fragment>
-            <Container>
-                <div className="row">
-                    <div className="col-sm-8 text-success">
-                        <h5 className="p-3 fw-bold text-white">
-                            Study List Table Page
-                        </h5>
-                        <table className="table table-bordered text-white">
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Organization</th>
-                                    <th>Date</th>
-                                    <th>Status</th>
-                                    <th>View Survey</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {category.map((getID) => (
-                                    <tr key = {getID.category_id}>
-                                        <td> {getID.category_Title}</td>
-                                        <td> {getID.category_Organization}</td>
-                                        <td> {getID.category_Date}</td>
-                                        <td> {getID.category_Status}</td>
-                                        <td><button onClick={() => setGoToSurvey(true)}> View </button> </td>
+        <div className="container">
 
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </Container>
-        </React.Fragment>
+
+
+            <table className="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Organization</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">State</th>
+                        <th scope="col">View Survey</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {studies.map((study, index) => (
+                        <tr key={index}>
+                        <th scope="row" key={index}>
+                            {index + 1}
+                        </th>
+                        <td>{study.name}</td>
+                        <td>{study.organization}</td>
+                        <td>{study.creationTime}</td>
+                        <td>{study.state}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
     );
 }
