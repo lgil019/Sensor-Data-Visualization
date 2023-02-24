@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {Navigate, useNavigate} from "react-router-dom";
+import {Navigate, useNavigate, Link} from "react-router-dom";
 import axios from 'axios';
 import { Container, Table, Button } from 'react-bootstrap';
 
@@ -70,7 +70,11 @@ export default function StudyList() {
                         <td>{study.organization}</td>
                         <td>{study.creationTime}</td>
                         <td>{study.state}</td>
-                        <td><Button>View</Button></td>
+                        <td>
+                            <Link className="btn btn-success mx-2" to={`/study/study/${study.id}`}>
+                                View
+                            </Link>
+                        </td>
                         </tr>
                     ))}
                 </tbody>

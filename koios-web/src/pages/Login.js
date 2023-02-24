@@ -63,7 +63,7 @@ export default function Login() {
 
                 localStorage.setItem("email", user.email);
                 //Navigate to dashboard
-                navigate('/survey');
+                navigate('/study/studylist');
             }
             else {
                // document.getElementById("error_msg").className = "";

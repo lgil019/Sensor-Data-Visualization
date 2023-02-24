@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.koios.server.model.Study;
@@ -34,5 +35,11 @@ public class StudyController {
 	public List<Study> getStudyList() {
 		System.out.println("Retrieving all studies...");
 		return studyRepository.findAll();
+	}
+	
+	@GetMapping("/study/study/{id}")
+	public Study getStudy(@PathVariable Integer id) {
+		Study study = studyRepository.findById(id);
+		return study;
 	}
 }
