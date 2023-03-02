@@ -1,8 +1,8 @@
 import './../index.css';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import {useNavigate } from "react-router-dom";
-//import Navigation from '../layout/Navigation';
+import {useNavigate} from "react-router-dom";
+
 /**
  * @author Tony Erazo
  * The Login.js handles all front end functionality and initial communication witht he server
@@ -12,7 +12,6 @@ import {useNavigate } from "react-router-dom";
 
 
 export default function Login() {
-
     //Comment
     let navigate = useNavigate();
 
@@ -20,11 +19,15 @@ export default function Login() {
         email:"",
         password:"",
     });
-
-
-    
-    const loadPage = () => {
+   
+    const LoadPage = () => {
         useEffect(() => {
+
+            //Assume they're logged in
+            if(localStorage.getItem("email")) {
+                navigate('/study/studylist');
+            }
+
             const signUpButton = document.getElementById('signUp');
             const signInButton = document.getElementById('signIn');
             const container = document.getElementById('main-container');
@@ -58,11 +61,12 @@ export default function Login() {
             if(response.data.login_error === '0') {
                 console.log("Login Success!");
 
+                localStorage.setItem("email", user.email);
                 //Navigate to dashboard
-                navigate('/survey');
+                navigate('/study/studylist');
             }
             else {
-                document.getElementById("error_msg").className = "";
+               // document.getElementById("error_msg").className = "";
             }
        });
     }
@@ -73,8 +77,8 @@ export default function Login() {
     };
 
     return(
-        <div className="container" onLoad={loadPage()}>
-            <div className="main-container mx-auto" id="main-container">
+        <div className="container" onLoad={LoadPage()}>
+            <div className="main-container" id="main-container">
                 <div className="form-container sign-up-container">
                     <form action="#">
                         <h1>Create Account</h1>

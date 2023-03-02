@@ -2,17 +2,12 @@
 
 import './../index.css';
 import React, {useState, useEffect} from "react";
-import {Container} from "react-bootstrap";
+import axios from 'axios';
+import {useNavigate} from "react-router-dom";
+
 
 export default function SurveyList() {
-    const [category, setID] = useState([]);
-
-    useEffect (() => {
-        const getID = async () => {
-            const res = await fetch ("http://localhost:8080/SurveyList"); //Link for sql database
-            const getdata = await res.json();
-            setID(getdata);
-        };
+    let navigate = useNavigate();
 
     //Assume they're not logged in
     if(!localStorage.getItem("email")) {
