@@ -16,14 +16,17 @@ import com.koios.server.repository.SurveyRepository;
 public class SurveyController {
 	@Autowired
 	private SurveyRepository surveyRepository;
-	
-	/**
-	 * Gets a list of all the {@code Survey} entries from the database
-	 * @return {@code List}
-	 */
+
 	@GetMapping("/surveylist")
 	public List<Survey> getSurveyList() {
 		System.out.println("Retrieving all surveys...");
 		return surveyRepository.findAll();
+		
+	}
+
+	@GetMapping("/survey/survey/{id}")
+	public Survey getSurvey(Integer id) {
+		Survey survey = surveyRepository.findById(id);
+		return survey;	
 	}
 }

@@ -11,27 +11,27 @@ public class Survey {
 	@Id
 	@GeneratedValue
 	/**
-	 * The identification digit of the study
+	 * The identification digit of the survey
 	 */
 	private Integer id;
 	
 	/**
-	 * The name of the study
+	 * The name of the survey
 	 */
 	private String name;
 	
 	/**
-	 * The organization running the study
+	 * The organization running the survey
 	 */
 	private String organization;
 	
 	/**
-	 * The description of the study
+	 * The description of the survey
 	 */
 	private String description;
 	
 	/**
-	 * The creator of the study
+	 * The creator of the survey
 	 */
 	private String created_by;
 	
@@ -61,9 +61,9 @@ public class Survey {
 	private Integer modification_time_zone_offset;
 	
 	/**
-	 * The type of study
+	 * The type of survey
 	 */
-	private Integer study_type;
+	private Integer survey_type;
 	
 	/**
 	 * The instructions regarding to the study procedure
@@ -92,7 +92,7 @@ public class Survey {
 	private String user_email_prefix;
 	
 	/**
-	 * The number of users in the study
+	 * The number of users in the survey
 	 */
 	private Integer user_counter;
 	
@@ -221,16 +221,16 @@ public class Survey {
 		this.modification_time_zone_offset = modificationTimeZoneOffset;
 	}
 	/**
-	 * @return the study_type
+	 * @return the survey_type
 	 */
-	public Integer getStudyType() {
-		return study_type;
+	public Integer getSurveyType() {
+		return survey_type;
 	}
 	/**
-	 * @param study_type the study_type to set
+	 * @param survey_type the survey_type to set
 	 */
-	public void setStudyType(Integer studyType) {
-		this.study_type = studyType;
+	public void setStudyType(Integer surveyType) {
+		this.survey_type = surveyType;
 	}
 	/**
 	 * @return the instruction

@@ -7,6 +7,6 @@ import com.koios.server.model.Survey;
 @Repository
 public interface SurveyRepository extends JpaRepository<Survey, Long>{
     
-	public Survey findById(Integer id);
+	public Survey findById (Integer studyID);
 	
 }
