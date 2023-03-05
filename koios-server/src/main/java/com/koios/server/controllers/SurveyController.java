@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.koios.server.model.Survey;
 import com.koios.server.repository.SurveyRepository;
@@ -25,7 +26,7 @@ public class SurveyController {
 	}
 
 	@GetMapping("/survey/survey/{id}")
-	public Survey getSurvey(Integer id) {
+	public Survey getSurvey(@PathVariable Integer id) {
 		Survey survey = surveyRepository.findById(id);
 		return survey;	
 	}
