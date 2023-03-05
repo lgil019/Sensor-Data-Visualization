@@ -71,8 +71,8 @@ export default function StudyList() {
                         <td>{study.creationTime}</td>
                         <td>{study.state}</td>
                         <td>
-                            <Link className="btn btn-success mx-2" to={`/study/study/${study.id}`}>
-                                View
+                            <Link className="btn btn-success mx-2" to={`/study/surveys/${study.id}`}>
+                                Surveys
                             </Link>
                         </td>
                         </tr>
