@@ -3,6 +3,7 @@ package com.koios.server.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * The Users class represents an SQL table entry of all the collection of registered users on the server
@@ -10,7 +11,8 @@ import javax.persistence.Id;
  *
  */
 @Entity
-public class Users {
+@Table(name = "users")
+public class User {
 
 	@Id
 	@GeneratedValue

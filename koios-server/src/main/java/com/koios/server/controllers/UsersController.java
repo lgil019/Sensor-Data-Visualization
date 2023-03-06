@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.koios.server.model.Users;
-import com.koios.server.repository.UsersRepository;
+import com.koios.server.model.User;
+import com.koios.server.repository.UserRepository;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
@@ -18,7 +18,7 @@ public class UsersController {
 	 * 
 	 */
 	@Autowired
-	private UsersRepository userRepository;
+	private UserRepository userRepository;
 	
 	/**
 	 * This method helps login the by finding their email and matching the password to their account. 	 * 
@@ -26,7 +26,7 @@ public class UsersController {
 	 * @return {@code JSON} formatted login response
 	 */
 	@PostMapping("/login")
-	String authenticateLogin(@RequestBody Users user) {
+	String authenticateLogin(@RequestBody User user) {
 		
 		
 		System.out.println("authenticating login...");
@@ -36,7 +36,7 @@ public class UsersController {
 		String inputEmail = user.getEmail();
 		String inputPassword = user.getPassword();
 
-		Users result = userRepository.findByEmail(inputEmail);
+		User result = userRepository.findByEmail(inputEmail);
 		
 		
 		if (result != null) {
