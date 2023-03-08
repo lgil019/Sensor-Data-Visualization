@@ -10,7 +10,7 @@ export default function Navbar() {
       <div className = "navbar-container"> 
         <ul className = "navbar-menu">
           <li><Link className = "navbar_links" to="/pages">Home</Link></li>
-          <li><NavLink className = "navbar_links" to="/survey">Surveys</NavLink></li>
+          <li><NavLink className = "navbar_links" to="/study/studyList">Studies</NavLink></li>
           <li><NavLink className = "navbar_links" to="/">Login</NavLink></li>
         </ul>
       </div>

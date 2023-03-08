@@ -7,9 +7,10 @@ import {useState} from "react";
 import Login from "./pages/Login";
 import Navbar from './layout/Navbar';
 import SurveyData from './pages/SurveyData';
-import SurveyList from './pages/SurveyList';
+import SurveyList from './pages/study/surveys/SurveyList';
 import StudyList from './pages/study/StudyList';
 import Study from './pages/study/Study';
+import Oldsurveylist from './pages/Oldsurveylist';
 
 function App() {
   const [selected, setSelected] = useState("");
@@ -23,6 +24,9 @@ function App() {
            <Route exact path="/survey" element={<SurveyData />} />
            <Route exact path="/study/studylist" element={<StudyList />} />
            <Route exact path="/study/study/:id" element={<Study />} />
+           <Route exact path="/surveylist" element ={<Oldsurveylist/>}/>
+           <Route exact path="/study/surveys/:studyId" element={<SurveyList/>}/>
+
         </Routes>
      </Router>
     </div>
