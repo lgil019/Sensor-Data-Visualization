@@ -1,5 +1,6 @@
 package com.koios.server.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,13 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.koios.server.model.Survey_summary;
+import com.koios.server.model.Survey;
 import com.koios.server.repository.SurveyRepository;
 
 
 /**
  * Services the functionality to any {@docRoot Survey} entries
  * @author Jonathan
+ * @author Tony Erazo
  *
  */
 @RestController
@@ -28,16 +30,21 @@ public class SurveyController {
      * @return {@code List}
      */
 
-    @GetMapping("/surveylist")
-    public List<Survey_summary> getSurveyList() {
-        System.out.println("Retrieving all surveys...");
-        return surveyRepository.findAll();
-
-    }
-
     @GetMapping("/study/surveys/{studyId}")
-    public Survey_summary getSurvey(@PathVariable Integer studyId) {
-        Survey_summary surveys = surveyRepository.findByStudyId(studyId);
-        return surveys;
+    public List<Survey> getSurveyList(@PathVariable Integer studyId) {
+        System.out.println("Retrieving all surveys...");
+
+        List<Survey> surveys = surveyRepository.findAll();
+        List<Survey> surveysInStudy = new ArrayList<>();
+
+       
+        for(Survey survey : surveys) {
+        	System.out.println("Current Survey Id: " + survey.getStudyId());
+        	if(survey.getStudyId() == studyId) {
+        		System.out.println("Found Matching Survey Id: " + survey.getStudyId());
+        		surveysInStudy.add(survey);
+        	}
+        }
+        return surveysInStudy;
     }
 }

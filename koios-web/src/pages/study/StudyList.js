@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
-import {Navigate, useNavigate, Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 import axios from 'axios';
-import { Container, Table, Button } from 'react-bootstrap';
+import { Container, Table } from 'react-bootstrap';
 
 /**
  * Displays a list of all the studies within the koios database.
@@ -49,7 +49,7 @@ export default function StudyList() {
 
 
 
-            <Table table-dark>
+            <Table>
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -58,6 +58,7 @@ export default function StudyList() {
                         <th>Date</th>
                         <th>State</th>
                         <th>View Study</th>
+                        <th>View Surveys</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -71,7 +72,12 @@ export default function StudyList() {
                         <td>{study.creationTime}</td>
                         <td>{study.state}</td>
                         <td>
-                            <Link className="btn btn-success mx-2" to={`/study/surveys/${study.id}`}>
+                            <Link className="btn btn-success mx-2" to={`/study/study/${study.id}`}>
+                                Study
+                            </Link>
+                        </td>
+                        <td>
+                            <Link className="btn btn-success mx-2" to={`/study/survey/surveylist/${study.id}`}>
                                 Surveys
                             </Link>
                         </td>

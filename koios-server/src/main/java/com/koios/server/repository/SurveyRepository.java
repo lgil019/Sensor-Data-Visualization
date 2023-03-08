@@ -1,6 +1,6 @@
 package com.koios.server.repository;
 
-import com.koios.server.model.Survey_summary;
+import com.koios.server.model.Survey;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
  *
  */
 @Repository
-public interface SurveyRepository extends JpaRepository<Survey_summary, Long> {
-    public Survey_summary findByStudyId (Integer studyId);
+public interface SurveyRepository extends JpaRepository<Survey, Long> {
+	
+    public Survey findByStudyId(Integer studyId);
+    
 }

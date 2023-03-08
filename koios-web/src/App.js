@@ -1,19 +1,16 @@
 import './App.css';
 import './index.css';
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import {useState} from "react";
 import Login from "./pages/Login";
 import Navbar from './layout/Navbar';
-import SurveyData from './pages/SurveyData';
 import SurveyList from './pages/study/surveys/SurveyList';
 import StudyList from './pages/study/StudyList';
 import Study from './pages/study/Study';
-import Oldsurveylist from './pages/Oldsurveylist';
 
 function App() {
-  const [selected, setSelected] = useState("");
+ 
   return (
     <div className="App">
     
@@ -21,11 +18,9 @@ function App() {
         <Navbar/>
         <Routes>
            <Route exact path="/" element={<Login />} />
-           <Route exact path="/survey" element={<SurveyData />} />
            <Route exact path="/study/studylist" element={<StudyList />} />
            <Route exact path="/study/study/:id" element={<Study />} />
-           <Route exact path="/surveylist" element ={<Oldsurveylist/>}/>
-           <Route exact path="/study/surveys/:studyId" element={<SurveyList/>}/>
+           <Route exact path="/study/survey/surveylist/:studyId" element={<SurveyList/>}/>
 
         </Routes>
      </Router>

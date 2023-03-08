@@ -1,9 +1,8 @@
 
 import React, {useState, useEffect} from "react";
-import {Navigate, useNavigate, Link, useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import axios from 'axios';
-import { Container, Table, Button } from 'react-bootstrap';
-import StudyList from "../StudyList";
+import { Container, Table } from 'react-bootstrap';
 
 /**
  * Displays a list of all the studies within the koios database.
@@ -16,14 +15,27 @@ export default function SurveyList() {
      * Create the study object here
      */
     const[surveys, setSurveys] = useState([{
+        "creation_time" : "",
+        "creation_time_zone_offset" : "",
+        "description" : "",
+        "end_time" : "",
+        "end_time_zone_offset" : "",
         "id": 0,
+        "lifecycle": "",
+        "modification_time": "",
+        "modification_time_zone_offset": "",
         "name": "",
-        "start_time": "",
-        "end_time": "",
-       
+        "published_time": "",
+        "published_time_zone_offset": "",
+        "published_version" : "",
+        "schedule" : "",
+        "start_time" : "",
+        "start_time_zone_offset" : "",
+        "state" : "",
+        "study_id" : "",
     }]);
 
-    const  {studyId}  = StudyList();
+    const  {studyId}  = useParams();
 
 
     const loadData = async () => {
@@ -39,11 +51,12 @@ export default function SurveyList() {
     return (
         <Container>
 
-            <Table table-dark>
+            <Table>
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
+                        <th>Description</th>
                         <th>Start Date</th>
                         <th>End Date</th>
                     </tr>
@@ -55,6 +68,7 @@ export default function SurveyList() {
                             {index + 1}
                         </th>
                         <td>{survey.name}</td>
+                        <td>{survey.description}</td>
                         <td>{survey.start_time}</td>
                         <td>{survey.end_time}</td>
                         <td>
@@ -65,6 +79,7 @@ export default function SurveyList() {
                         </tr>
                     ))}
                 </tbody>
+                <Link className="btn btn-primary my-2" to={`/study/studylist`}>Back</Link>
             </Table>
             
         </Container>
