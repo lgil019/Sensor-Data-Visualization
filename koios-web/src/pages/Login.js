@@ -6,7 +6,8 @@ import md5 from 'md5-hash'
 
 /**
  * @author Tony Erazo
- * The Login.js handles all front end functionality and initial communication witht he server
+ * The Login.js handles all front end functionality and initial communication with the server
+ * Jonathan -> Removed sign up features
  * @returns 
  */
 
@@ -30,13 +31,8 @@ export default function Login() {
                 navigate('/study/studylist');
             }
 
-            const signUpButton = document.getElementById('signUp');
             const signInButton = document.getElementById('signIn');
             const container = document.getElementById('main-container');
-
-            signUpButton.addEventListener('click', () => {
-                container.classList.add("right-panel-active");
-            });
             
             signInButton.addEventListener('click', () => {
                 container.classList.remove("right-panel-active");
@@ -89,29 +85,9 @@ export default function Login() {
     return(
         <div className="container" onLoad={LoadPage()}>
             <div className="main-container" id="main-container">
-                <div className="form-container sign-up-container">
-                    <form action="#">
-                        <h1>Create Account</h1>
-                        <div className="social-container">
-                            <a href="#" className="social"><i className="fa fa-facebook-f"></i></a>
-                            <a href="#" className="social"><i className="fa fa-google"></i></a>
-                            <a href="#" className="social"><i className="fa fa-linkedin"></i></a>
-                        </div>
-                        <span>or use your email for registration</span>
-                        <input type="text" placeholder="Name" />
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Password" />
-                        <button className="login-button">Sign Up</button>
-                    </form>
-                </div>
                 <div className="form-container sign-in-container">
                     <form action="#" onSubmit={(e) => onSubmit(e)}>
                         <h1>Sign in</h1>
-                        <div className="social-container">
-                            <a href="#" className="social"><i className="fa fa-facebook-f"></i></a>
-                            <a href="#" className="social"><i className="fa fa-google"></i></a>
-                            <a href="#" className="social"><i className="fa fa-linkedin"></i></a>
-                        </div>
                         <span>or use your account</span>
                         <input type={"text"} placeholder="E-mail" name="email" onChange={(e) => onInputChange(e)}/>
                         <input type={"password"} placeholder="Password" name="password" onChange={(e) => onInputChange(e)}/>
@@ -125,11 +101,6 @@ export default function Login() {
                             <h1>Welcome Back!</h1>
                             <p>To keep connected with us please login with your personal info</p>
                             <button className="login-button login-button--ghost" id="signIn">Sign In</button>
-                        </div>
-                        <div className="overlay-panel overlay-right">
-                            <h1>Hello, Friend!</h1>
-                            <p>Enter your personal details and start journey with us</p>
-                            <button className="login-button login-button--ghost" id="signUp">Sign Up</button>
                         </div>
                     </div>
                 </div>
