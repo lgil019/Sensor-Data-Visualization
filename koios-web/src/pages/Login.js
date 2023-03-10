@@ -2,6 +2,7 @@ import './../index.css';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useNavigate} from "react-router-dom";
+import md5 from 'md5-hash'
 
 /**
  * @author Tony Erazo
@@ -14,6 +15,7 @@ import {useNavigate} from "react-router-dom";
 export default function Login() {
     //Comment
     let navigate = useNavigate();
+    var md5Hash = require("md5-hash");
 
     const [user, setUser]=useState({
         email:"",
@@ -47,7 +49,15 @@ export default function Login() {
 
     const onInputChange= (e) => {
         //console.log("typing... " + [e.target.name] + e.target.value)
-        setUser({...user,[e.target.name]:e.target.value})
+        if(e.target.name === 'password') {
+            console.log("setting password val");
+            setUser({...user,[e.target.name]:md5Hash.default(e.target.value)});
+            console.log("md5: " + user.password);
+        }
+        else {
+            setUser({...user,[e.target.name]:e.target.value})
+        }
+        
         console.log(e.target.name + " " + e.target.value)
     };
 

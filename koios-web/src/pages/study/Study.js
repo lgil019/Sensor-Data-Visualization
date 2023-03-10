@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
-import {Navigate, useNavigate, useParams, Link} from "react-router-dom";
+import {useParams, Link} from "react-router-dom";
 import axios from 'axios';
-import { Container, Table, Button } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 /**
  * Displays the contents of the study within the koios database.
@@ -48,7 +48,7 @@ export default function Study() {
     }, []);
 
     return (
-        <div className="container">
+        <Container>
             <div className="row">
                 <div className="col-md-6-offset-md-3 border rounded p-4 mt-2 shadow">
                     <h2 className="text-center m-4">View Study</h2>
@@ -79,6 +79,6 @@ export default function Study() {
                     <Link className="btn btn-primary my-2" to={`/study/studylist`}>Back</Link>
                 </div>
             </div>
-        </div>
+        </Container>
     );
 }
