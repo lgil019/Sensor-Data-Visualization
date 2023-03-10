@@ -34,21 +34,21 @@ public class UsersController {
 		System.out.println("user email: " + user.getEmail());
 		// This is what the user inputs from the client
 		String inputEmail = user.getEmail();
-		String inputPassword = user.getPassword();
+		String hashedPassword = user.getPassword();
 
 		User result = userRepository.findByEmail(inputEmail);
 		
 		
 		if (result != null) {
 			System.out.println("User Found E-mail: " + result.getEmail() + " pass: " + result.getPassword()
-					+ " input e-mail: " + inputEmail + " input pass: " + inputPassword);
+					+ " input e-mail: " + inputEmail + " input pass: " + hashedPassword);
 
 			//store database email
 			String dbEmail = result.getEmail();
 			String dbPassword = result.getPassword();
 			
 				//compare database email with user email
-				if (inputEmail.equals(dbEmail) && inputPassword.equals(dbPassword)) {
+				if (inputEmail.equals(dbEmail) && hashedPassword.equals(dbPassword)) {
 					System.out.println("Account Successfully Authenticated");
 					
 					return "{" + "\"login_error\":\"0\"," + "\"time\":\"0\"" + "}";
