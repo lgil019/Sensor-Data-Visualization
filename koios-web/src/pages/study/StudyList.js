@@ -67,7 +67,7 @@ export default function StudyList() {
                         <th key={index}>
                             {index + 1}
                         </th>
-                        <td>{study.name}</td>
+                        <td align = "left"> {study.name}</td>
                         <td>{study.organization}</td>
                         <td>{study.creationTime}</td>
                         <td>{study.state}</td>

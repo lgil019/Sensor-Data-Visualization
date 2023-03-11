@@ -56,7 +56,6 @@ export default function SurveyList() {
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
-                        <th>Description</th>
                         <th>Start Date</th>
                         <th>End Date</th>
                     </tr>
@@ -67,8 +66,7 @@ export default function SurveyList() {
                         <th key={index}>
                             {index + 1}
                         </th>
-                        <td>{survey.name}</td>
-                        <td>{survey.description}</td>
+                        <td align = "left">{survey.name}</td>
                         <td>{survey.start_time}</td>
                         <td>{survey.end_time}</td>
                         <td>
