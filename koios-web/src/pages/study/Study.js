@@ -38,7 +38,7 @@ export default function Study() {
 
     const loadData = async () => {
         console.log("ATTEMPTING TO GET");
-        const result = await axios.get(`http://localhost:8080/study/study/${id}`);
+        const result = await axios.get(`http://localhost:8080/study/${id}`);
         setStudies(result.data);
         console.log(result.data);
     }

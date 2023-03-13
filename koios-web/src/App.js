@@ -8,6 +8,7 @@ import Navbar from './layout/Navbar';
 import SurveyList from './pages/study/surveys/SurveyList';
 import StudyList from './pages/study/StudyList';
 import Study from './pages/study/Study';
+import QuestionList from './pages/study/surveys/questions/QuestionList';
 
 function App() {
  
@@ -19,9 +20,9 @@ function App() {
         <Routes>
            <Route exact path="/" element={<Login />} />
            <Route exact path="/study/studylist" element={<StudyList />} />
-           <Route exact path="/study/study/:id" element={<Study />} />
-           <Route exact path="/study/survey/surveylist/:studyId" element={<SurveyList/>}/>
-
+           <Route exact path="/study/:id" element={<Study />} />
+           <Route exact path="/study/:studyId/surveys/surveylist/" element={<SurveyList/>}/>
+           <Route exact path="/study/:studyId/survey/:surveyId/questions/" element={<QuestionList/>}/>
         </Routes>
      </Router>
     </div>

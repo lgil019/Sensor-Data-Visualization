@@ -72,12 +72,12 @@ export default function StudyList() {
                         <td>{study.creationTime}</td>
                         <td>{study.state}</td>
                         <td>
-                            <Link className="btn btn-success mx-2" to={`/study/study/${study.id}`}>
+                            <Link className="btn btn-success mx-2" to={`/study/${study.id}`}>
                                 Study
                             </Link>
                         </td>
                         <td>
-                            <Link className="btn btn-success mx-2" to={`/study/survey/surveylist/${study.id}`}>
+                            <Link className="btn btn-success mx-2" to={`/study/${study.id}/surveys/surveylist/`}>
                                 Surveys
                             </Link>
                         </td>

@@ -39,7 +39,7 @@ export default function SurveyList() {
 
 
     const loadData = async () => {
-        const result = await axios.get(`http://localhost:8080/study/surveys/${studyId}`);
+        const result = await axios.get(`http://localhost:8080/study/${studyId}/surveys/`);
         setSurveys(result.data);
         console.log(result.data);
     }
@@ -70,7 +70,7 @@ export default function SurveyList() {
                         <td>{survey.start_time}</td>
                         <td>{survey.end_time}</td>
                         <td>
-                            <Link className="btn btn-success mx-2" to={`/home`}>
+                            <Link className="btn btn-success mx-2" to={`/study/${studyId}/survey/${survey.id}/questions/`}>
                                 Questions
                             </Link>
                         </td>

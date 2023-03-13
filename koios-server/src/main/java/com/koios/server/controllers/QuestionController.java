@@ -19,7 +19,7 @@ public class QuestionController {
     @Autowired
     private QuestionsRepository questionsRepository;
 
-    @GetMapping("/study/surveys/questions/{surveyId}")
+    @GetMapping("/study/{studyId}/surveys/{surveyId}/questions/")
     public List<Question> getQuestionList(@PathVariable Integer surveyId) {
         System.out.println("Retrieving all questions...");
 

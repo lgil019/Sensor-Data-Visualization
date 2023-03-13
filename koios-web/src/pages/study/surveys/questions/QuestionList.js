@@ -33,11 +33,12 @@ export default function questionsList() {
         "child_triggering_input" : "",
     }]);
 
+    const  {studyId}  = useParams();
     const  {surveyId}  = useParams();
 
 
     const loadData = async () => {
-        const result = await axios.get(`http://localhost:8080/study/surveys/questions/${surveyId}`);
+        const result = await axios.get(`http://localhost:8080/study/${studyId}/surveys/${surveyId}/questions/`);
         setQuestions(result.data);
         console.log(result.data);
     }
@@ -49,34 +50,6 @@ export default function questionsList() {
     return (
         <Container>
 
-            <Table>
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Question</th>
-                        <th>Type</th>
-                        <th>Answers</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {questions.map((question, index) => (
-                        <tr key={index}>
-                        <th key={index}>
-                            {index + 1}
-                        </th>
-                        <td align = "left">{question.task_text}</td>
-                        <td>{question.type}</td>
-                        <td>{question.possible_input}</td>
-                        <td>
-                            <Link className="btn btn-success mx-2" to={`/home`}>
-                                Question Details
-                            </Link>
-                        </td>
-                        </tr>
-                    ))}
-                </tbody>
-                <Link className="btn btn-primary my-2" to={`/study/surveys/${studyId}`}>Back</Link>
-            </Table>
             
         </Container>
     );
