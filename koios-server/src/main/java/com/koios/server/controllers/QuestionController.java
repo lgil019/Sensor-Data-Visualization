@@ -27,12 +27,13 @@ public class QuestionController {
         List<Question> questionsInStudy = new ArrayList<>();
 
 
-        for(Question question : questions) {
+        for (Question question : questions) {
             System.out.println("Current Survey Id: " + question.getSurveyId());
-            if(question.getSurveyId() == surveyId) {
+            if (question.getSurveyId() == surveyId) {
                 System.out.println("Found Matching Survey Id: " + question.getSurveyId());
                 questionsInStudy.add(question);
             }
         }
         return questionsInStudy;
+    }
 }
