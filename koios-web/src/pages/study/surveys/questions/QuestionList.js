@@ -15,14 +15,14 @@ export default function questionsList() {
      * Create the study object here
      */
     const[questions, setQuestions] = useState([{
-        "study_id" : "",
-        "survey_id" : "",
+        "studyId" : "",
+        "surveyId" : "",
         "version" : "",
         "task_id" : "",
-        "task_text" : "",
+        "question" : "",
         "id": 0,
         "type": "",
-        "possible_input": "",
+        "answers": "",
         "order_id": "",
         "is_active": "",
         "is_required": "",
@@ -50,7 +50,29 @@ export default function questionsList() {
     return (
         <Container>
 
-            
+            <Table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Study Id</th>
+                        <th>Survey Id</th>
+                        <th>Question</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {questions.map((q, index) => (
+                        <tr key={index}>
+                        <th key={index}>
+                            {index + 1}
+                        </th>
+                        <td align = "center">{q.studyId}</td>
+                        <td align = "center">{q.surveyId}</td>
+                        <td align = "center">{q.question}</td>
+                        </tr>
+                    ))}
+                </tbody>
+                <Link className="btn btn-primary my-2" to={`/study/studylist`}>Back</Link>
+            </Table>
         </Container>
     );
 }

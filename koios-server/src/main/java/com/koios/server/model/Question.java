@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name = "survey_task")
 public class Question {
 
-
+	//TODO add the rest of the values to match the database
 
     @Id
     @GeneratedValue
@@ -23,8 +23,11 @@ public class Question {
     @Column(name = "survey_id")
     private Integer surveyId;
     private Integer version;
-    @Column(name = "task_text")
-    private String question_text;
+    @Column(name = "task_id")
+    private String taskId;
+
+	@Column(name = "task_text")
+    private String question;
     private String type;
     @Column(name = "possible_input")
     private String answers;
@@ -61,9 +64,9 @@ public class Question {
         this.version = version;
     }
 
-    public String getQuestion_text() {return question_text;}
+    public String getQuestion() {return question;}
 
-    public void setQuestion_text(String question_text) {this.question_text = question_text;}
+    public void setQuestion(String question) {this.question = question;}
 
     public String getType() {
         return type;
@@ -80,4 +83,12 @@ public class Question {
     public void setAnswers(String answers) {
         this.answers = answers;
     }
+    
+    public String getTaskId() {
+		return taskId;
+	}
+
+	public void setTaskId(String taskId) {
+		this.taskId = taskId;
+	}
 }
