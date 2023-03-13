@@ -33,6 +33,10 @@ export default function Login() {
 
             const signInButton = document.getElementById('signIn');
             const container = document.getElementById('main-container');
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
             
             signInButton.addEventListener('click', () => {
                 container.classList.remove("right-panel-active");
@@ -85,10 +89,17 @@ export default function Login() {
     return(
         <div className="container" onLoad={LoadPage()}>
             <div className="main-container" id="main-container">
+<<<<<<< Updated upstream
                 <div className="form-container sign-in-container">
                     <form action="#" onSubmit={(e) => onSubmit(e)}>
                         <h1>Sign in</h1>
                         <span>or use your account</span>
+=======
+   
+                <div className="form-container sign-in-container">
+                    <form action="#" onSubmit={(e) => onSubmit(e)}>
+                        <h1>Sign in</h1>
+>>>>>>> Stashed changes
                         <input type={"text"} placeholder="E-mail" name="email" onChange={(e) => onInputChange(e)}/>
                         <input type={"password"} placeholder="Password" name="password" onChange={(e) => onInputChange(e)}/>
                         <a href="#">Forgot your password?</a>
