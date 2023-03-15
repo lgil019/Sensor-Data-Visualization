@@ -67,17 +67,17 @@ export default function StudyList() {
                         <th key={index}>
                             {index + 1}
                         </th>
-                        <td>{study.name}</td>
+                        <td align = "left"> {study.name}</td>
                         <td>{study.organization}</td>
                         <td>{study.creationTime}</td>
                         <td>{study.state}</td>
                         <td>
-                            <Link className="btn btn-success mx-2" to={`/study/study/${study.id}`}>
+                            <Link className="btn btn-success mx-2" to={`/study/${study.id}`}>
                                 Study
                             </Link>
                         </td>
                         <td>
-                            <Link className="btn btn-success mx-2" to={`/study/survey/surveylist/${study.id}`}>
+                            <Link className="btn btn-info mx-2" to={`/study/${study.id}/surveys/surveylist/`}>
                                 Surveys
                             </Link>
                         </td>

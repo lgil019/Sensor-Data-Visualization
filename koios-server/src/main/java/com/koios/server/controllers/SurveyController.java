@@ -29,8 +29,7 @@ public class SurveyController {
      * Gets a list of all the {@code Survey} entries from the database
      * @return {@code List}
      */
-
-    @GetMapping("/study/surveys/{studyId}")
+    @GetMapping("/study/{studyId}/surveys/")
     public List<Survey> getSurveyList(@PathVariable Integer studyId) {
         System.out.println("Retrieving all surveys...");
 
@@ -46,5 +45,11 @@ public class SurveyController {
         	}
         }
         return surveysInStudy;
+    }
+    
+    public Survey getSurvey(@PathVariable Integer surveyId) {
+    	System.out.println("Finding specific survey: " + surveyId);
+    	//Survey survey = surveyRepository.findBySurveyId(surveyId);
+    	return null;
     }
 }

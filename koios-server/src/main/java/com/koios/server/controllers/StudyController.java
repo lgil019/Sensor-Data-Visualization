@@ -37,7 +37,7 @@ public class StudyController {
 		return studyRepository.findAll();
 	}
 	
-	@GetMapping("/study/study/{id}")
+	@GetMapping("/study/{id}")
 	public Study getStudy(@PathVariable Integer id) {
 		Study study = studyRepository.findById(id);
 		return study;

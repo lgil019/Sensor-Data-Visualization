@@ -24,6 +24,7 @@ public class User {
 	/**
 	 * The user's password
 	 */
+
 	private String password;
 	
 	/**

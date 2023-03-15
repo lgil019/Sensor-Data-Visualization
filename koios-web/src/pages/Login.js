@@ -89,6 +89,7 @@ export default function Login() {
                     <form action="#" onSubmit={(e) => onSubmit(e)}>
                         <h1>Sign in</h1>
                         <span>or use your account</span>
+
                         <input type={"text"} placeholder="E-mail" name="email" onChange={(e) => onInputChange(e)}/>
                         <input type={"password"} placeholder="Password" name="password" onChange={(e) => onInputChange(e)}/>
                         <a href="#">Forgot your password?</a>

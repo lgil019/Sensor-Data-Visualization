@@ -37,6 +37,9 @@ public class Survey {
 	 * The description of the study
 	 */
 	private String end_time;
+	
+	@Column(name = "response_count")
+	private Integer responseCount;
 
 	public Integer getId() {
 		return id;
@@ -76,5 +79,13 @@ public class Survey {
 
 	public void setEnd_time(String end_time) {
 		this.end_time = end_time;
+	}
+	
+	public Integer getResponseCount() {
+		return responseCount;
+	}
+	
+	public void setResponseCount(Integer responseCount) {
+		this.responseCount = responseCount;
 	}
 }

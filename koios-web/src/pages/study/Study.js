@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
-import {useParams, Link} from "react-router-dom";
+import {Navigate, useNavigate, useParams, Link} from "react-router-dom";
 import axios from 'axios';
-import { Container } from 'react-bootstrap';
+import { Container, Table, Button } from 'react-bootstrap';
 
 /**
  * Displays the contents of the study within the koios database.
@@ -38,7 +38,7 @@ export default function Study() {
 
     const loadData = async () => {
         console.log("ATTEMPTING TO GET");
-        const result = await axios.get(`http://localhost:8080/study/study/${id}`);
+        const result = await axios.get(`http://localhost:8080/study/${id}`);
         setStudies(result.data);
         console.log(result.data);
     }
@@ -48,7 +48,7 @@ export default function Study() {
     }, []);
 
     return (
-        <Container>
+        <div className="container">
             <div className="row">
                 <div className="col-md-6-offset-md-3 border rounded p-4 mt-2 shadow">
                     <h2 className="text-center m-4">View Study</h2>
@@ -58,19 +58,19 @@ export default function Study() {
                             Details of study id: {study.id}
                             <ul className="list-group list-group-flush">
                                 <li className="list-group-item">
-                                    <b>Study Name:</b>
+                                    <b>Study Name: </b>
                                     {study.name}
                                 </li>
                                 <li className="list-group-item">
-                                    <b>Organization:</b>
+                                    <b>Organization: </b>
                                     {study.organization}
                                 </li>
                                 <li className="list-group-item">
-                                    <b>Description:</b>
+                                    <b>Description: </b>
                                     {study.description}
                                 </li>
                                 <li className="list-group-item">
-                                    <b>Created By:</b>
+                                    <b>Created By: </b>
                                     {study.createdBy}
                                 </li>
                             </ul>
@@ -79,6 +79,6 @@ export default function Study() {
                     <Link className="btn btn-primary my-2" to={`/study/studylist`}>Back</Link>
                 </div>
             </div>
-        </Container>
+        </div>
     );
 }
