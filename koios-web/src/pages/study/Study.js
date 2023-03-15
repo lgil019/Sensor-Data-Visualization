@@ -27,6 +27,7 @@ export default function Study() {
         "modificationTime": "0",
         "modificationTimeZoneOffset": null,
         "createdBy": "",
+        "responseCount": "",
         "studyType": 0,
         "iconUrl": "",
         "inviteCode": "",

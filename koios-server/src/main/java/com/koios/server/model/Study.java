@@ -1,5 +1,6 @@
 package com.koios.server.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -107,6 +108,10 @@ public class Study {
 	 * Fitbit enabled flag
 	 */
 	private Integer fitbit_integration_enabled;
+
+	@Column(name = "response_count")
+	private Integer responseCount;
+
 	/**
 	 * @return the id
 	 */
@@ -322,5 +327,13 @@ public class Study {
 	 */
 	public void setFitbitIntegrationEnabled(Integer fitbitIntegrationEnabled) {
 		this.fitbit_integration_enabled = fitbitIntegrationEnabled;
+	}
+
+	public Integer getResponseCount() {
+		return responseCount;
+	}
+	
+	public void setResponseCount(Integer responseCount) {
+		this.responseCount = responseCount;
 	}
 }

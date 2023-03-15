@@ -27,6 +27,7 @@ export default function StudyList() {
         "modificationTime": "0",
         "modificationTimeZoneOffset": null,
         "createdBy": "",
+        "responseCount": "",
         "studyType": 0,
         "iconUrl": "",
         "inviteCode": "",
@@ -38,6 +39,17 @@ export default function StudyList() {
         const result = await axios.get(`http://localhost:8080/study/studylist`);
         setStudies(result.data);
         console.log(result.data);
+    }
+
+    const getStudyButtonStyle = (responseCount) => {
+
+        console.log("count " + responseCount);
+        if(responseCount == 0) {
+            return "btn-secondary";
+        }
+        else {
+            return "btn-info";
+        }
     }
 
     useEffect(()=>{
@@ -77,7 +89,7 @@ export default function StudyList() {
                             </Link>
                         </td>
                         <td>
-                            <Link className="btn btn-info mx-2" to={`/study/${study.id}/surveys/surveylist/`}>
+                            <Link className={`btn ${getStudyButtonStyle(study.responseCount)} mx-2`} to={`/study/${study.id}/surveys/surveylist/`}>
                                 Surveys
                             </Link>
                         </td>
