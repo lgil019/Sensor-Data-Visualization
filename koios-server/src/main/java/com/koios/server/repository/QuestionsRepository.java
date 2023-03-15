@@ -9,7 +9,7 @@ import com.koios.server.model.Question;
 
 public interface QuestionsRepository extends JpaRepository<Question, Long> {
 
-	@Query(value = "SELECT * FROM survey_task q WHERE q.survey_id = ?1", nativeQuery = true)
+	@Query(value = "SELECT * FROM survey_task WHERE survey_id = ?", nativeQuery = true)
     public List<Question> findQuestionsBySurveyId(Integer surveyId);
     
 }
