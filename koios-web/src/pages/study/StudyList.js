@@ -77,7 +77,7 @@ export default function StudyList() {
                             </Link>
                         </td>
                         <td>
-                            <Link className="btn btn-success mx-2" to={`/study/${study.id}/surveys/surveylist/`}>
+                            <Link className="btn btn-info mx-2" to={`/study/${study.id}/surveys/surveylist/`}>
                                 Surveys
                             </Link>
                         </td>

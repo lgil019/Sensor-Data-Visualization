@@ -28,6 +28,7 @@ export default function SurveyList() {
         "published_time": "",
         "published_time_zone_offset": "",
         "published_version" : "",
+        "responseCount" : "",
         "schedule" : "",
         "start_time" : "",
         "start_time_zone_offset" : "",
@@ -44,6 +45,17 @@ export default function SurveyList() {
         console.log(result.data);
     }
 
+    const getSurveyButtonStyle = (responseCount) => {
+
+        console.log("count " + responseCount);
+        if(responseCount == 0) {
+            return "btn-secondary";
+        }
+        else {
+            return "btn-info";
+        }
+    }
+
     useEffect(()=>{
         loadData();
     }, []);
@@ -56,8 +68,6 @@ export default function SurveyList() {
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,11 +77,12 @@ export default function SurveyList() {
                             {index + 1}
                         </th>
                         <td align = "left">{survey.name}</td>
-                        <td>{survey.start_time}</td>
-                        <td>{survey.end_time}</td>
                         <td>
                             <Link className="btn btn-success mx-2" to={`/study/${studyId}/survey/${survey.id}/questions/`}>
                                 Questions
+                            </Link>
+                            <Link className={`btn ${getSurveyButtonStyle(survey.responseCount)} mx-2`} to={`/study/${studyId}/survey/${survey.id}/responses/`}>
+                                Responses
                             </Link>
                         </td>
                         </tr>
