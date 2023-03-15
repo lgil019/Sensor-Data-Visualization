@@ -1,28 +1,26 @@
 package com.koios.server.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
+
 
 @Entity
+@IdClass(QuestionKey.class)
 @Table(name = "survey_task")
 public class Question {
 
 	//TODO add the rest of the values to match the database
 
-    @Id
-    @GeneratedValue
-    private Integer id;
-
-
+@Id
     @Column(name = "study_id")
     private Integer studyId;
+@Id
     @Column(name = "survey_id")
     private Integer surveyId;
+@Id
     private Integer version;
+@Id
     @Column(name = "task_id")
     private String taskId;
 
@@ -32,13 +30,6 @@ public class Question {
     @Column(name = "possible_input")
     private String answers;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getStudyId() {
         return studyId;
@@ -92,3 +83,4 @@ public class Question {
 		this.taskId = taskId;
 	}
 }
+
