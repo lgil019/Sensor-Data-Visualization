@@ -109,8 +109,8 @@ public class Study {
 	 */
 	private Integer fitbit_integration_enabled;
 
-	@Column(name = "response_count")
-	private Integer responseCount;
+	@Column(name = "survey_count")
+	private Integer surveyCount;
 
 	/**
 	 * @return the id
@@ -329,11 +329,11 @@ public class Study {
 		this.fitbit_integration_enabled = fitbitIntegrationEnabled;
 	}
 
-	public Integer getResponseCount() {
-		return responseCount;
+	public Integer getSurveyCount() {
+		return surveyCount;
 	}
 	
-	public void setResponseCount(Integer responseCount) {
-		this.responseCount = responseCount;
+	public void setSurveyCount(Integer surveyCount) {
+		this.surveyCount = surveyCount;
 	}
 }

@@ -27,7 +27,7 @@ export default function StudyList() {
         "modificationTime": "0",
         "modificationTimeZoneOffset": null,
         "createdBy": "",
-        "responseCount": "",
+        "surveyCount": "",
         "studyType": 0,
         "iconUrl": "",
         "inviteCode": "",
@@ -41,10 +41,10 @@ export default function StudyList() {
         console.log(result.data);
     }
 
-    const getStudyButtonStyle = (responseCount) => {
+    const getStudyButtonStyle = (surveyCount) => {
 
-        console.log("count " + responseCount);
-        if(responseCount == 0) {
+        console.log("count " + surveyCount);
+        if(surveyCount == 0) {
             return "btn-secondary";
         }
         else {
@@ -89,7 +89,7 @@ export default function StudyList() {
                             </Link>
                         </td>
                         <td>
-                            <Link className={`btn ${getStudyButtonStyle(study.responseCount)} mx-2`} to={`/study/${study.id}/surveys/surveylist/`}>
+                            <Link className={`btn ${getStudyButtonStyle(study.surveyCount)} mx-2`} to={`/study/${study.id}/surveys/surveylist/`}>
                                 Surveys
                             </Link>
                         </td>
