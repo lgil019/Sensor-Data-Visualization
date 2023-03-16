@@ -28,7 +28,7 @@ public class Question {
     private String question;
     private String type;
     @Column(name = "possible_input")
-    private String answers;
+	private String answers;
 
 
     public Integer getStudyId() {
