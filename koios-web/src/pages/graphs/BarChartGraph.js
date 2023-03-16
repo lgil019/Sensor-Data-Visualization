@@ -18,9 +18,9 @@ import {
 /**
  * Demo of a line chart
  * @author Tony Erazo
- * @returns LineChartGraph
+ * @returns BarChartGraph
  */
-export default function LineChartGraph() {
+export default function BarChartGraph() {
 
     const [data, setdata] = useState();
     
