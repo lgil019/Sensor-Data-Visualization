@@ -31,7 +31,6 @@ public class SurveyController {
      */
     @GetMapping("/study/{studyId}/surveys/")
     public List<Survey> getSurveyList(@PathVariable Integer studyId) {
-        System.out.println("Retrieving all surveys...");
         List<Survey> surveys = surveyRepository.getSurveyList(studyId);
         return surveys;
     }
