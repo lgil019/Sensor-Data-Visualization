@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 /**
@@ -14,6 +15,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
+@IdClass(SurveyKey.class)
 @Table(name = "survey_summary")
 public class Survey {
 
@@ -24,6 +26,7 @@ public class Survey {
 	/**
 	 * The name of the study
 	 */
+	@Id
 	@Column(name = "study_id")
 	private Integer studyId;
 	private String name;
