@@ -56,7 +56,7 @@ export default function questionsList() {
                         <th>#</th>
                         <th>Study Id</th>
                         <th>Survey Id</th>
-                        <th>Question</th>
+                        <th align = "Left" >Question</th>
                         <th>Type</th>
                     </tr>
                 </thead>
@@ -68,8 +68,8 @@ export default function questionsList() {
                         </th>
                         <td align = "center">{q.studyId}</td>
                         <td align = "center">{q.surveyId}</td>
-                        <td align = "left">{q.question}</td>
-                        <td align = "center">{q.type}</td>
+                        <td align = "Left">{q.question}</td>
+                        <td>{q.type}</td>
                         </tr>
                     ))}
                 </tbody>

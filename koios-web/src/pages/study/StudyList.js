@@ -19,7 +19,7 @@ export default function StudyList() {
         "organization": "",
         "description": "",
         "creation_time_zone_offset": 0,
-        "state": 0,
+        "status": 0,
         "instruction": "",
         "creationTime": "",
         "userEmailPrefix": "",
@@ -27,7 +27,6 @@ export default function StudyList() {
         "modificationTime": "0",
         "modificationTimeZoneOffset": null,
         "createdBy": "",
-        "surveyCount": "",
         "studyType": 0,
         "iconUrl": "",
         "inviteCode": "",
@@ -41,16 +40,7 @@ export default function StudyList() {
         console.log(result.data);
     }
 
-    const getStudyButtonStyle = (surveyCount) => {
 
-        console.log("count " + surveyCount);
-        if(surveyCount == 0) {
-            return "btn-secondary";
-        }
-        else {
-            return "btn-info";
-        }
-    }
 
     useEffect(()=>{
         loadData();
@@ -68,7 +58,7 @@ export default function StudyList() {
                         <th>Name</th>
                         <th>Organization</th>
                         <th>Date</th>
-                        <th>State</th>
+                        <th>Status</th>
                         <th>View Study</th>
                         <th>View Surveys</th>
                     </tr>
@@ -82,14 +72,14 @@ export default function StudyList() {
                         <td align = "left"> {study.name}</td>
                         <td>{study.organization}</td>
                         <td>{study.creationTime}</td>
-                        <td>{study.state}</td>
+                        <td>{study.status === 1 ? 'Open' : "Closed"}</td>
                         <td>
                             <Link className="btn btn-success mx-2" to={`/study/${study.id}`}>
                                 Study
                             </Link>
                         </td>
                         <td>
-                            <Link className={`btn ${getStudyButtonStyle(study.surveyCount)} mx-2`} to={`/study/${study.id}/surveys/surveylist/`}>
+                            <Link className="btn btn-info mx-2" to={`/study/${study.id}/surveys/surveylist/`}>
                                 Surveys
                             </Link>
                         </td>
