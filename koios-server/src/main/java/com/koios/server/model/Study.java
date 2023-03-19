@@ -4,7 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-
+import javax.persistence.Column;
+import javax.persistence.Table;
 /**
  * The {@code Study} represents a database Study entry which pertains to a specific research containing data on the individuals
  * participating in the study with their fitness data
@@ -52,10 +53,9 @@ public class Study {
 	 */
 	private Integer creation_time_zone_offset;
 	
-	/**
-	 * Current state of the study
-	 */
-	private Integer state;
+
+	@Column(name = "state")
+	private Integer status;
 	
 	/**
 	 * The timestamp set when the study was last modified
@@ -194,14 +194,14 @@ public class Study {
 	/**
 	 * @return the state
 	 */
-	public Integer getState() {
-		return state;
+	public Integer getStatus() {
+		return status;
 	}
 	/**
 	 * @param state the state to set
 	 */
-	public void setState(Integer state) {
-		this.state = state;
+	public void setStatus(Integer state) {
+		this.status = status;
 	}
 	/**
 	 * @return the modification_time

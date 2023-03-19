@@ -44,6 +44,8 @@ public class Survey {
 	@Column(name = "response_count")
 	private Integer responseCount;
 
+	private Integer published_version;
+
 	public Integer getId() {
 		return id;
 	}
@@ -90,5 +92,13 @@ public class Survey {
 	
 	public void setResponseCount(Integer responseCount) {
 		this.responseCount = responseCount;
+	}
+
+	public Integer getPublished_version() {
+		return published_version;
+	}
+
+	public void setPublished_version(Integer published_version) {
+		this.published_version = published_version;
 	}
 }
