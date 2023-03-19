@@ -1,8 +1,11 @@
 package com.koios.server.model;
 
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
 
 
 @Entity
@@ -28,7 +31,7 @@ public class Question {
     private String question;
     private String type;
     @Column(name = "possible_input")
-    private String answers;
+	private String answers;
 
 
     public Integer getStudyId() {
