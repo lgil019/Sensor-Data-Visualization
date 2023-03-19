@@ -34,7 +34,7 @@ public class SurveyController {
         return surveys;
     }
 
-    @GetMapping("/study/{studyId}/surveys/")
+    @GetMapping("/study/{studyId}/surveys/{surveyId}")
     public List<Survey> getSurveyVersion(@PathVariable Integer published_version) {
         List<Survey> versions = surveyRepository.getSurveyVersion(published_version);
         return versions;
