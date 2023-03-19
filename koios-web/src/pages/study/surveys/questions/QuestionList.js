@@ -73,6 +73,9 @@ export default function questionsList() {
                         </tr>
                     ))}
                 </tbody>
+                <Link className="btn btn-primary my-2" to={`/study/${studyId}/survey/${surveyId}/questions/responses/`}>
+                                Responses
+                            </Link>
                 <Link className="btn btn-primary my-2" to={`/study/studylist`}>Back</Link>
             </Table>
         </Container>

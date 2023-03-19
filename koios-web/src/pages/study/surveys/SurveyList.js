@@ -45,17 +45,6 @@ export default function SurveyList() {
         console.log(result.data);
     }
 
-    const getSurveyButtonStyle = (responseCount) => {
-
-        console.log("count " + responseCount);
-        if(responseCount == 0) {
-            return "btn-secondary";
-        }
-        else {
-            return "btn-info";
-        }
-    }
-
     useEffect(()=>{
         loadData();
     }, []);
@@ -81,9 +70,6 @@ export default function SurveyList() {
                         <td>
                             <Link className="btn btn-success mx-2" to={`/study/${studyId}/survey/${survey.id}/questions/`}>
                                 Questions
-                            </Link>
-                            <Link className={`btn ${getSurveyButtonStyle(survey.responseCount)} mx-2`} to={`/study/${studyId}/survey/${survey.id}/responses/`}>
-                                Responses
                             </Link>
                         </td>
                         </tr>
