@@ -68,6 +68,7 @@ export default function SurveyList() {
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
+                        <th>Version</th>
                     </tr>
                 </thead>
                 <tbody>

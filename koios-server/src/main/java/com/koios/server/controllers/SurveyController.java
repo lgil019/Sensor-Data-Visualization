@@ -1,6 +1,5 @@
 package com.koios.server.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +32,11 @@ public class SurveyController {
     public List<Survey> getSurveyList(@PathVariable Integer studyId) {
         List<Survey> surveys = surveyRepository.getSurveyList(studyId);
         return surveys;
+    }
+
+    @GetMapping("/study/{studyId}/surveys/")
+    public List<Survey> getSurveyVersion(@PathVariable Integer published_version) {
+        List<Survey> versions = surveyRepository.getSurveyVersion(published_version);
+        return versions;
     }
 }
