@@ -26,9 +26,9 @@ public class Survey {
 	/**
 	 * The name of the study
 	 */
-	@Id
 	@Column(name = "study_id")
 	private Integer studyId;
+	
 	private String name;
 
 	/**
@@ -44,7 +44,8 @@ public class Survey {
 	@Column(name = "response_count")
 	private Integer responseCount;
 
-	private Integer published_version;
+	@Column(name = "published_version")
+	private Integer publishedVersion;
 
 	public Integer getId() {
 		return id;
@@ -95,10 +96,11 @@ public class Survey {
 	}
 
 	public Integer getPublished_version() {
-		return published_version;
+		return publishedVersion;
 	}
 
 	public void setPublished_version(Integer published_version) {
-		this.published_version = published_version;
+		this.publishedVersion = published_version;
 	}
+
 }

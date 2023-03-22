@@ -28,9 +28,21 @@ public class SurveyController {
      * Gets a list of all the {@code Survey} entries from the database
      * @return {@code List}
      */
-    @GetMapping("/study/{studyId}/surveys/")
+    @GetMapping("/study/{studyId}/surveylist/")
     public List<Survey> getSurveyList(@PathVariable Integer studyId) {
         List<Survey> surveys = surveyRepository.getSurveyList(studyId);
         return surveys;
+    }
+    
+    @GetMapping("/study/{studyId}/surveys/{surveyId}/version/{publishedVersion}/")     
+    public List<Survey> getSurveyVersion(@PathVariable Integer surveyId, @PathVariable Integer publishedVersion) {    
+    	
+    	System.out.println("Survey Id: " + surveyId + " published ver: " + publishedVersion);
+    	List<Survey> versions = surveyRepository.getSurveyVersion(surveyId, publishedVersion);   
+    	System.out.println("Size of list: " + versions.size());
+    	for(Survey ver : versions) {
+    		System.out.println("Version: " + ver.getPublished_version());
+    	}
+    	return versions;     
     }
 }

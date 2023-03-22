@@ -2,7 +2,7 @@
 import React, {useState, useEffect} from "react";
 import {Link, useParams} from "react-router-dom";
 import axios from 'axios';
-import { Container, Table } from 'react-bootstrap';
+import { Container, Table, Dropdown } from 'react-bootstrap';
 
 /**
  * Displays a list of all the studies within the koios database.
@@ -34,13 +34,14 @@ export default function SurveyList() {
         "start_time_zone_offset" : "",
         "state" : "",
         "study_id" : "",
+
     }]);
 
     const  {studyId}  = useParams();
 
 
     const loadData = async () => {
-        const result = await axios.get(`http://localhost:8080/study/${studyId}/surveys/`);
+        const result = await axios.get(`http://localhost:8080/study/${studyId}/surveylist/`);
         setSurveys(result.data);
         console.log(result.data);
     }
@@ -57,6 +58,7 @@ export default function SurveyList() {
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
+                        <th>Version</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,6 +68,17 @@ export default function SurveyList() {
                             {index + 1}
                         </th>
                         <td align = "left">{survey.name}</td>
+                        <td>
+                            <Dropdown>
+                                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                    Select Version
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    <Dropdown.Item href={`#/action-${index}`}>${survey.published_version}</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </td>
                         <td>
                             <Link className="btn btn-success mx-2" to={`/study/${studyId}/survey/${survey.id}/questions/`}>
                                 Questions
