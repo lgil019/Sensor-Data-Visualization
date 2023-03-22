@@ -38,12 +38,17 @@ export default function SurveyList() {
     }]);
 
     const  {studyId}  = useParams();
-
+    
+    const [version, setVersion] = useState(1);
 
     const loadData = async () => {
         const result = await axios.get(`http://localhost:8080/study/${studyId}/surveylist/`);
         setSurveys(result.data);
         console.log(result.data);
+    }
+
+    const selectSurveyVersion = (version) => {
+        this.version = version;
     }
 
     useEffect(()=>{
@@ -75,12 +80,16 @@ export default function SurveyList() {
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <Dropdown.Item href={`#/action-${index}`}>${survey.published_version}</Dropdown.Item>
+                                    
+                                       {[...Array(survey.published_version)].map((x, version) => (
+                                            <Dropdown.Item href={`#/action-${version+1}`} onClick={(e) => setVersion(version+1)}>{version+1}</Dropdown.Item>
+                                       ))}
+                                   
                                 </Dropdown.Menu>
                             </Dropdown>
                         </td>
                         <td>
-                            <Link className="btn btn-success mx-2" to={`/study/${studyId}/survey/${survey.id}/questions/`}>
+                            <Link className="btn btn-success mx-2" to={`/study/${studyId}/survey/${survey.id}/version/${version}/questions/`}>
                                 Questions
                             </Link>
                         </td>

@@ -34,15 +34,4 @@ public class SurveyController {
         return surveys;
     }
     
-    @GetMapping("/study/{studyId}/surveys/{surveyId}/version/{publishedVersion}/")     
-    public List<Survey> getSurveyVersion(@PathVariable Integer surveyId, @PathVariable Integer publishedVersion) {    
-    	
-    	System.out.println("Survey Id: " + surveyId + " published ver: " + publishedVersion);
-    	List<Survey> versions = surveyRepository.getSurveyVersion(surveyId, publishedVersion);   
-    	System.out.println("Size of list: " + versions.size());
-    	for(Survey ver : versions) {
-    		System.out.println("Version: " + ver.getPublished_version());
-    	}
-    	return versions;     
-    }
 }

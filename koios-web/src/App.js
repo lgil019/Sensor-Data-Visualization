@@ -23,7 +23,7 @@ function App() {
            <Route exact path="/study/studylist" element={<StudyList />} />
            <Route exact path="/study/:id" element={<Study />} />
            <Route exact path="/study/:studyId/surveys/surveylist/" element={<SurveyList/>}/>
-           <Route exact path="/study/:studyId/survey/:surveyId/questions/" element={<QuestionList/>}/>
+           <Route exact path="/study/:studyId/survey/:surveyId/version/:versionId/questions/" element={<QuestionList/>}/>
            <Route exact path="/graph/" element={<BarChartGraph/>}/>
         </Routes>
      </Router>

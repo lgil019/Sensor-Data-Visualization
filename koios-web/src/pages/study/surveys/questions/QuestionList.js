@@ -35,10 +35,10 @@ export default function questionsList() {
 
     const  {studyId}  = useParams();
     const  {surveyId}  = useParams();
-
+    const {versionId} = useParams();
 
     const loadData = async () => {
-        const result = await axios.get(`http://localhost:8080/study/${studyId}/surveys/${surveyId}/questions/`);
+        const result = await axios.get(`http://localhost:8080/study/${studyId}/survey/${surveyId}/version/${versionId}/questions/`);
         setQuestions(result.data);
         console.log(result.data);
     }
@@ -58,6 +58,7 @@ export default function questionsList() {
                         <th>Survey Id</th>
                         <th align = "Left" >Question</th>
                         <th>Type</th>
+                        <th>Version</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,13 +71,14 @@ export default function questionsList() {
                         <td align = "center">{q.surveyId}</td>
                         <td align = "Left">{q.question}</td>
                         <td>{q.type}</td>
+                        <td>{q.version}</td>
                         </tr>
                     ))}
                 </tbody>
                 <Link className="btn btn-primary my-2" to={`/study/${studyId}/survey/${surveyId}/questions/responses/`}>
                                 Responses
                             </Link>
-                <Link className="btn btn-primary my-2" to={`/study/studylist`}>Back</Link>
+                <Link className="btn btn-primary my-2" to={`/study/${studyId}/surveys/surveylist`}>Back</Link>
             </Table>
         </Container>
     );
