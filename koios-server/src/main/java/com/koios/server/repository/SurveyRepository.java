@@ -19,13 +19,15 @@ import com.koios.server.model.Survey;
 public interface SurveyRepository extends JpaRepository<Survey, Long> {
 	
     public Survey findByStudyId(Integer studyId);
-    public Survey findByPublishedVersion(Integer published_version);
-  
-    //TODO add path variables
-    @Query(value = "SELECT * FROM survey_summary WHERE study_id = ?", nativeQuery=true)
+    
+    @Query(value = "SELECT * FROM survey_summary WHERE study_id = :studyId", nativeQuery=true)
     public List<Survey> getSurveyList(@Param("studyId") Integer studyId);
 
-    @Query(value = "SELECT survey_summary.id, survey_task.survey_id, survey_summary.published_version, survey_task.version FROM survey_summary, survey_task WHERE (survey_summary.id = survey_task.survey_id) && (survey_summary.published_version = survey_task.version)", nativeQuery = true)
-    public List<Survey> getSurveyVersion(@Param("published_version") Integer published_version);
+    /*@Query(value = "SELECT id, published_version"
+    		+ "FROM survey_summary, survey_task "
+    		+ "WHERE survey_summary.id = survey_task.survey_id and survey_summary.published_version = survey_task.version", 
+    		nativeQuery = true)
+    public List<Survey> getSurveyVersion(@Param("surveyId") Integer surveyId, @Param("publishedVersion") Integer publishedVersion);*/
     
+
 }

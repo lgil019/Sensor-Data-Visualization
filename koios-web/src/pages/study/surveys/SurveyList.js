@@ -2,7 +2,7 @@
 import React, {useState, useEffect} from "react";
 import {Link, useParams} from "react-router-dom";
 import axios from 'axios';
-import { Container, Table } from 'react-bootstrap';
+import { Container, Table, Dropdown } from 'react-bootstrap';
 
 /**
  * Displays a list of all the studies within the koios database.
@@ -34,15 +34,19 @@ export default function SurveyList() {
         "start_time_zone_offset" : "",
         "state" : "",
         "study_id" : "",
+        "version" : "",
     }]);
 
     const  {studyId}  = useParams();
 
-
     const loadData = async () => {
-        const result = await axios.get(`http://localhost:8080/study/${studyId}/surveys/`);
+        const result = await axios.get(`http://localhost:8080/study/${studyId}/surveylist/`);
         setSurveys(result.data);
         console.log(result.data);
+    }
+
+    const setVersion = (survey, version) => {
+        survey.version = version;
     }
 
     useEffect(()=>{
@@ -68,7 +72,21 @@ export default function SurveyList() {
                         </th>
                         <td align = "left">{survey.name}</td>
                         <td>
-                            <Link className="btn btn-success mx-2" to={`/study/${studyId}/survey/${survey.id}/questions/`}>
+                            <Dropdown>
+                                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                    {!survey.version ? "Select Version" : survey.version}
+                                </Dropdown.Toggle>
+                                    
+                                <Dropdown.Menu>
+                                       {[...Array(survey.published_version)].map((x, version) => (
+                                            <Dropdown.Item href={`#/action-${version+1}`} onClick={(e) => setVersion(survey, version+1)}>{version+1}</Dropdown.Item>
+                                       ))}
+                                   
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </td>
+                        <td>
+                            <Link className="btn btn-success mx-2" to={`/study/${studyId}/survey/${survey.id}/version/${survey.version}/questions/`}>
                                 Questions
                             </Link>
                         </td>
