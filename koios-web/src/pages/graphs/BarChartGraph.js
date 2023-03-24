@@ -23,24 +23,15 @@ import {
  */
 export default function BarChartGraph(props) {
 
-    const [data, setdata] = useState();
-
-    useEffect(() => {
-        const fetchDatas = async () => {
-          const res = await fetch("https:api.coincap.io/v2/assets/?limit=20");
-          const data = await res.json();
-          console.log(data);
-          setdata(data.data);
-        };
-        fetchDatas();
-      }, []);
-
+   //console.log("Response" + props.response);
+    var choices = props.data.answers.split("|");
+    var possibleChoices = choices.length;
     return (
         <Container>
           <div>{props.question}</div>
         <ResponsiveContainer width="100%" height={400}>
         <BarChart
-            data={data}
+            data={props.data}
             margin={{
             top: 5,
             right: 30,
@@ -49,12 +40,16 @@ export default function BarChartGraph(props) {
             }}
         >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
+            <XAxis dataKey={props.data.taskId} />
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="name" fill="#8884d8" />
-            <Bar dataKey="priceUsd" fill="#82ca9d" />
+
+            {
+              choices.map((choice, index) => (
+                <Bar dataKey={choice} fill={"#8"+ index * 5 +"d"}/>
+                ))
+            }
         </BarChart>
         </ResponsiveContainer>
 

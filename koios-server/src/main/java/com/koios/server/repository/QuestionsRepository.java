@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.koios.server.model.Question;
+import com.koios.server.model.QuestionResponse;
 
 public interface QuestionsRepository extends JpaRepository<Question, Long> {
 
@@ -17,5 +18,12 @@ public interface QuestionsRepository extends JpaRepository<Question, Long> {
     		+ " WHERE questions.survey_id = ?1 and questions.version = ?2", 
     		nativeQuery = true)
     public List<Question> getSurveyVersionQuestions(Integer survey_id, Integer version);
+    
+    
+    @Query(value = "SELECT *"
+    		+ " FROM survey_response answers"
+    		+ " WHERE answers.survey_id = ?1 and answers.version = ?2", 
+    		nativeQuery = true)
+    public List<QuestionResponse> getQuestionResponseList(Integer survey_id, Integer version);
     
 }

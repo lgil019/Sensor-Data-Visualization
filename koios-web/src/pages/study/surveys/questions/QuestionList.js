@@ -35,6 +35,14 @@ export default function questionsList() {
         "chart_is_visible" : false,
     }]);
 
+    const[responses, setResponses] = useState([{
+        "studyId": "",
+        "surveyId": "",
+        "taskId": "",
+        "responseType": "",
+        "response": "",
+    }]);
+
     const  {studyId}  = useParams();
     const  {surveyId}  = useParams();
     const {versionId} = useParams();
@@ -43,6 +51,9 @@ export default function questionsList() {
         const result = await axios.get(`http://localhost:8080/study/${studyId}/survey/${surveyId}/version/${versionId}/questions/`);
         setQuestions(result.data);
         console.log(result.data);
+        const answersResult = await axios.get(`http://localhost:8080/study/${studyId}/survey/${surveyId}/version/${versionId}/questions/responselist/`);
+        setResponses(answersResult.data);
+        console.log("responses: " + answersResult.data);
     }
 
     useEffect(()=>{
@@ -96,7 +107,7 @@ export default function questionsList() {
                             </Button>
                             <Collapse in={q.chart_is_visible}>
                               <div>
-                                <BarChartGraph question={q.question} studyId={q.studyId} surveyId={q.surveyId} taskId={q.taskId}/>
+                                <BarChartGraph data={q} response={responses}/>
                               </div>
                             </Collapse>
                           </div>
