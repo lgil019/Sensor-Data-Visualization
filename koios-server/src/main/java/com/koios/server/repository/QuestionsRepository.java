@@ -21,9 +21,9 @@ public interface QuestionsRepository extends JpaRepository<Question, Long> {
     
     
     @Query(value = "SELECT *"
-    		+ " FROM survey_response answers"
-    		+ " WHERE answers.survey_id = ?1 and answers.version = ?2", 
+    		+ " FROM survey_response "
+    		+ " WHERE study_id = ?1 survey_id = ?2 and version = ?3", 
     		nativeQuery = true)
-    public List<QuestionResponse> getQuestionResponseList(Integer survey_id, Integer version);
+    public List<QuestionResponse> getQuestionResponseList(Integer study_id, Integer survey_id, Integer version);
     
 }

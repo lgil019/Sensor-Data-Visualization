@@ -47,8 +47,8 @@ public class QuestionController {
     }
     
     @GetMapping("/study/{studyId}/survey/{surveyId}/version/{publishedVersion}/questions/responselist/")   
-    public List<QuestionResponse> getQuestionResponseList(@PathVariable Integer surveyId, @PathVariable Integer publishedVersion) {
-    	List<QuestionResponse> answers = questionsRepository.getQuestionResponseList(surveyId-1, publishedVersion);
+    public List<QuestionResponse> getQuestionResponseList(@PathVariable Integer studyId, @PathVariable Integer surveyId, @PathVariable Integer publishedVersion) {
+    	List<QuestionResponse> answers = questionsRepository.getQuestionResponseList(studyId, surveyId, publishedVersion);
     	
     	System.out.println("Grabbing responses...");
     	System.out.println("Response list size: " + answers.size());

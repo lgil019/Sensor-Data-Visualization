@@ -18,8 +18,10 @@ import javax.persistence.Table;
 @Table(name = "survey_response")
 public class QuestionResponse {
 
+	@Id
 	@Column(name = "study_id")
 	private Integer studyId;
+	
 	@Id
 	@Column(name = "survey_id")
 	private Integer surveyId;
