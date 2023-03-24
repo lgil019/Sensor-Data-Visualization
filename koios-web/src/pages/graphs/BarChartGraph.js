@@ -10,6 +10,7 @@ import {
     XAxis,
     YAxis,
     CartesianGrid,
+    Cell,
     Tooltip,
     Legend,
     ResponsiveContainer,
@@ -20,13 +21,13 @@ import {
  * @author Tony Erazo
  * @returns BarChartGraph
  */
-export default function BarChartGraph() {
+export default function BarChartGraph(props) {
 
     const [data, setdata] = useState();
-    
+
     useEffect(() => {
         const fetchDatas = async () => {
-          const res = await fetch("https://api.coincap.io/v2/assets/?limit=20");
+          const res = await fetch("https:api.coincap.io/v2/assets/?limit=20");
           const data = await res.json();
           console.log(data);
           setdata(data.data);
@@ -34,9 +35,9 @@ export default function BarChartGraph() {
         fetchDatas();
       }, []);
 
-
     return (
         <Container>
+          <div>{props.question}</div>
         <ResponsiveContainer width="100%" height={400}>
         <BarChart
             data={data}
@@ -56,6 +57,7 @@ export default function BarChartGraph() {
             <Bar dataKey="priceUsd" fill="#82ca9d" />
         </BarChart>
         </ResponsiveContainer>
+
         </Container>
     );
 }

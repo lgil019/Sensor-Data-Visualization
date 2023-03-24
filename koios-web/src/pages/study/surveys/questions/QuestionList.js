@@ -2,7 +2,8 @@
 import React, {useState, useEffect} from "react";
 import {Link, useParams} from "react-router-dom";
 import axios from 'axios';
-import { Container, Table } from 'react-bootstrap';
+import { Button, Collapse, Container, Table } from 'react-bootstrap';
+import BarChartGraph from '../../../graphs/BarChartGraph';
 
 /**
  * Displays a list of all the studies within the koios database.
@@ -30,7 +31,8 @@ export default function questionsList() {
         "has_url" : "",
         "parent_task_id" : "",
         "has_parent" : "",
-        "childTriggeringInput" : "",
+        "child_triggering_input" : "",
+        "chart_is_visible" : false,
     }]);
 
     const  {studyId}  = useParams();
@@ -46,6 +48,14 @@ export default function questionsList() {
     useEffect(()=>{
         loadData();
     }, []);
+
+    const toggleCollapse = (index) => {
+        setQuestions((prevState) => {
+            const updatedQuestions = [...prevState];
+            updatedQuestions[index] = { ...updatedQuestions[index], chart_is_visible: !updatedQuestions[index].chart_is_visible };
+            return updatedQuestions;
+        });
+    };
 
     return (
         <Container>
@@ -65,6 +75,7 @@ export default function questionsList() {
                 </thead>
                 <tbody>
                     {questions.map((q, index) => (
+                        <>
                         <tr key={index}>
                         <th key={index}>
                             {index + 1}
@@ -77,6 +88,21 @@ export default function questionsList() {
                         <td>{q.childTriggeringInput}</td>
                         <td>{q.version}</td>
                         </tr>
+                        <tr>
+                        <td colSpan="6">
+                          <div>
+                            <Button variant="primary" onClick={() => toggleCollapse(index)}>
+                              {q.chart_is_visible ? "Collapse" : "Expand"}
+                            </Button>
+                            <Collapse in={q.chart_is_visible}>
+                              <div>
+                                <BarChartGraph question={q.question} studyId={q.studyId} surveyId={q.surveyId} taskId={q.taskId}/>
+                              </div>
+                            </Collapse>
+                          </div>
+                        </td>
+                        </tr>
+                        </>
                     ))}
                 </tbody>
                 <Link className="btn btn-primary my-2" to={`/study/${studyId}/survey/${surveyId}/questions/responses/`}>
