@@ -34,18 +34,14 @@ public class QuestionController {
     	   System.out.println("Questions: " + q.getQuestion() + " for survey id: " + surveyId);
        }
         return questions;
-        
     }
     
     @GetMapping("/study/{studyId}/survey/{surveyId}/version/{publishedVersion}/questions/")     
     public List<Question> getSurveyVersionQuestions(@PathVariable Integer surveyId, @PathVariable Integer publishedVersion) {    
     	
-    	System.out.println("Survey Id: " + surveyId + " published ver: " + publishedVersion);
+    	//System.out.println("Survey Id: " + surveyId + " published ver: " + publishedVersion);
     	List<Question> versions = questionsRepository.getSurveyVersionQuestions(surveyId, publishedVersion);   
 
-    	for(Question ver : versions) {
-    		System.out.println("Question " + ver.getQuestion() + " Version: " + ver.getVersion());
-    	}
     	return versions;     
     }
 }

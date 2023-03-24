@@ -18,5 +18,5 @@ public class QuestionKey implements Serializable {
 	@SuppressWarnings("unused")
 	private Integer version;
 	@Column(name = "task_id")
-	private String taskId;
+	private Integer taskId;
 }

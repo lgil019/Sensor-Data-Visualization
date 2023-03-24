@@ -18,7 +18,7 @@ export default function questionsList() {
         "studyId" : "",
         "surveyId" : "",
         "version" : "",
-        "task_id" : "",
+        "taskId" : "",
         "question" : "",
         "id": 0,
         "type": "",
@@ -30,7 +30,7 @@ export default function questionsList() {
         "has_url" : "",
         "parent_task_id" : "",
         "has_parent" : "",
-        "child_triggering_input" : "",
+        "childTriggeringInput" : "",
     }]);
 
     const  {studyId}  = useParams();
@@ -54,10 +54,12 @@ export default function questionsList() {
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Study Id</th>
-                        <th>Survey Id</th>
+                        {//<th>Study Id</th>
+                        //<th>Survey Id</th>
+                        }
                         <th align = "Left" >Question</th>
                         <th>Type</th>
+                        <th>Child Trigger</th>
                         <th>Version</th>
                     </tr>
                 </thead>
@@ -67,10 +69,12 @@ export default function questionsList() {
                         <th key={index}>
                             {index + 1}
                         </th>
-                        <td align = "center">{q.studyId}</td>
-                        <td align = "center">{q.surveyId}</td>
+                        {//<td align = "center">{q.studyId}</td>
+                        //<td align = "center">{q.surveyId}</td>
+                        }
                         <td align = "Left">{q.question}</td>
                         <td>{q.type}</td>
+                        <td>{q.childTriggeringInput}</td>
                         <td>{q.version}</td>
                         </tr>
                     ))}

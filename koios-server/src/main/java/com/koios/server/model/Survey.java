@@ -30,6 +30,9 @@ public class Survey {
 	private Integer studyId;
 	
 	private String name;
+	
+	@Column(name = "creation_time")
+	private String creationTime;
 
 	/**
 	 * The organization running the study
@@ -69,6 +72,14 @@ public class Survey {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getCreationTime() {
+		return creationTime;
+	}
+
+	public void setCreationTime(String creationTime) {
+		this.creationTime = creationTime;
 	}
 
 	public String getStart_time() {
