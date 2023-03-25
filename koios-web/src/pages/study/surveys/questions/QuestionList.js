@@ -82,6 +82,7 @@ export default function questionsList() {
                         <th>Type</th>
                         <th>Child Trigger</th>
                         <th>Version</th>
+                        <th>ParentId</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -98,6 +99,7 @@ export default function questionsList() {
                         <td>{q.type}</td>
                         <td>{q.childTriggeringInput}</td>
                         <td>{q.version}</td>
+                        <td>{q.parent_task_id === 0 ? " " : q.parent_task_id}</td>
                         </tr>
                         <tr>
                         <td colSpan="6">
