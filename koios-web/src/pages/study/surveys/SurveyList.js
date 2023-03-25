@@ -15,7 +15,7 @@ export default function SurveyList() {
      * Create the study object here
      */
     const[surveys, setSurveys] = useState([{
-        "creation_time" : "",
+        "creationTime" : "",
         "creation_time_zone_offset" : "",
         "description" : "",
         "end_time" : "",
@@ -79,7 +79,7 @@ export default function SurveyList() {
                                     
                                 <Dropdown.Menu>
                                        {[...Array(survey.published_version)].map((x, version) => (
-                                            <Dropdown.Item href={`#/action-${version+1}`} onClick={(e) => setVersion(survey, version+1)}>{version+1}</Dropdown.Item>
+                                            <Dropdown.Item href={`#/action-${version+1}`} onClick={(e) => setVersion(survey, version+1)}>{version+1} - {survey.creationTime.split(" ")[0]}</Dropdown.Item>
                                        ))}
                                    
                                 </Dropdown.Menu>

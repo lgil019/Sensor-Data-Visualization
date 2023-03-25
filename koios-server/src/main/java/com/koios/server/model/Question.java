@@ -25,16 +25,18 @@ public class Question {
     private Integer version;
 @Id
     @Column(name = "task_id")
-    private String taskId;
+    private Integer taskId;
 
 	@Column(name = "task_text")
     private String question;
     private String type;
     @Column(name = "possible_input")
 	private String answers;
+    
+    @Column(name = "child_triggering_input")
+	private String childTriggeringInput;
 
-
-    public Integer getStudyId() {
+	public Integer getStudyId() {
         return studyId;
     }
 
@@ -78,12 +80,20 @@ public class Question {
         this.answers = answers;
     }
     
-    public String getTaskId() {
+    public Integer getTaskId() {
 		return taskId;
 	}
 
-	public void setTaskId(String taskId) {
+	public void setTaskId(Integer taskId) {
 		this.taskId = taskId;
+	}
+	
+    public String getChildTriggeringInput() {
+		return childTriggeringInput;
+	}
+
+	public void setChildTriggeringInput(String childTriggeringInput) {
+		this.childTriggeringInput = childTriggeringInput;
 	}
 }
 

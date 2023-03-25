@@ -2,7 +2,8 @@
 import React, {useState, useEffect} from "react";
 import {Link, useParams} from "react-router-dom";
 import axios from 'axios';
-import { Container, Table } from 'react-bootstrap';
+import { Button, Collapse, Container, Table } from 'react-bootstrap';
+import BarChartGraph from '../../../graphs/BarChartGraph';
 
 /**
  * Displays a list of all the studies within the koios database.
@@ -18,7 +19,7 @@ export default function questionsList() {
         "studyId" : "",
         "surveyId" : "",
         "version" : "",
-        "task_id" : "",
+        "taskId" : "",
         "question" : "",
         "id": 0,
         "type": "",
@@ -31,6 +32,15 @@ export default function questionsList() {
         "parent_task_id" : "",
         "has_parent" : "",
         "child_triggering_input" : "",
+        "chart_is_visible" : false,
+    }]);
+
+    const[responses, setResponses] = useState([{
+        "studyId": "",
+        "surveyId": "",
+        "taskId": "",
+        "responseType": "",
+        "response": "",
     }]);
 
     const  {studyId}  = useParams();
@@ -41,11 +51,22 @@ export default function questionsList() {
         const result = await axios.get(`http://localhost:8080/study/${studyId}/survey/${surveyId}/version/${versionId}/questions/`);
         setQuestions(result.data);
         console.log(result.data);
+        const answersResult = await axios.get(`http://localhost:8080/study/${studyId}/survey/${surveyId}/version/${versionId}/questions/responselist/`);
+        setResponses(answersResult.data);
+        console.log("responses: " + answersResult.data);
     }
 
     useEffect(()=>{
         loadData();
     }, []);
+
+    const toggleCollapse = (index) => {
+        setQuestions((prevState) => {
+            const updatedQuestions = [...prevState];
+            updatedQuestions[index] = { ...updatedQuestions[index], chart_is_visible: !updatedQuestions[index].chart_is_visible };
+            return updatedQuestions;
+        });
+    };
 
     return (
         <Container>
@@ -54,25 +75,45 @@ export default function questionsList() {
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Study Id</th>
-                        <th>Survey Id</th>
+                        {//<th>Study Id</th>
+                        //<th>Survey Id</th>
+                        }
                         <th align = "Left" >Question</th>
                         <th>Type</th>
+                        <th>Child Trigger</th>
                         <th>Version</th>
                     </tr>
                 </thead>
                 <tbody>
                     {questions.map((q, index) => (
+                        <>
                         <tr key={index}>
                         <th key={index}>
                             {index + 1}
                         </th>
-                        <td align = "center">{q.studyId}</td>
-                        <td align = "center">{q.surveyId}</td>
+                        {//<td align = "center">{q.studyId}</td>
+                        //<td align = "center">{q.surveyId}</td>
+                        }
                         <td align = "Left">{q.question}</td>
                         <td>{q.type}</td>
+                        <td>{q.childTriggeringInput}</td>
                         <td>{q.version}</td>
                         </tr>
+                        <tr>
+                        <td colSpan="6">
+                          <div>
+                            <Button variant="primary" onClick={() => toggleCollapse(index)}>
+                              {q.chart_is_visible ? "Collapse" : "Expand"}
+                            </Button>
+                            <Collapse in={q.chart_is_visible}>
+                              <div>
+                                <BarChartGraph data={q} response={responses}/>
+                              </div>
+                            </Collapse>
+                          </div>
+                        </td>
+                        </tr>
+                        </>
                     ))}
                 </tbody>
                 <Link className="btn btn-primary my-2" to={`/study/${studyId}/survey/${surveyId}/questions/responses/`}>
