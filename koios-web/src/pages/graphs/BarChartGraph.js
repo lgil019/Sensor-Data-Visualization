@@ -55,6 +55,20 @@ function responseCounter(choices, response, type){
     return(freq);
 }
 
+const CustomizedAxisTick = ({ x, y, payload }) => {
+    const words = payload.value.split(/[\s/]+/); //Wrap on spaces (\s) and forward-slash
+  const dy = 16;
+  return (
+    <g transform={`translate(${x},${y})`}>
+      {words.map((word, i) => (
+        <text key={i} x={0} y={i * dy} dy={dy / 2} textAnchor="middle" fontSize="14">
+          {word}
+        </text>
+      ))}
+    </g>
+  );
+};
+
 export default function BarChartGraph(props) {
 
     // console.log("Response:");
@@ -77,7 +91,7 @@ export default function BarChartGraph(props) {
             }}
         >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
+            <XAxis dataKey="name" tick={<CustomizedAxisTick />} interval={0} angle={-45} textAnchor="end" height={80}/>
             <YAxis />
             <Tooltip />
             <Legend />
