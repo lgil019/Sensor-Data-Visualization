@@ -2,7 +2,7 @@
 import React, {useState, useEffect} from "react";
 import {Link, useParams} from "react-router-dom";
 import axios from 'axios';
-import { Button, Collapse, Container, Table } from 'react-bootstrap';
+import { Button, Collapse, Container, Table, Dropdown} from 'react-bootstrap';
 import BarChartGraph from '../../../graphs/BarChartGraph';
 
 /**
@@ -43,6 +43,7 @@ export default function questionsList() {
         "response": "",
     }]);
 
+
     const  {studyId}  = useParams();
     const  {surveyId}  = useParams();
     const {versionId} = useParams();
@@ -54,6 +55,10 @@ export default function questionsList() {
         const answersResult = await axios.get(`http://localhost:8080/study/${studyId}/survey/${surveyId}/version/${versionId}/questions/responselist/`);
         setResponses(answersResult.data);
         console.log("responses: " + answersResult.data);
+    }
+
+    const setVersion = (questions, version) => {
+        questions.version = version;
     }
 
     useEffect(()=>{
@@ -102,6 +107,7 @@ export default function questionsList() {
                         <td>{q.parent_task_id === 0 ? " " : q.parent_task_id}</td>
                         </tr>
                         <tr>
+                      
                         <td colSpan="6">
                           <div>
                             <Button variant="primary" onClick={() => toggleCollapse(index)}>

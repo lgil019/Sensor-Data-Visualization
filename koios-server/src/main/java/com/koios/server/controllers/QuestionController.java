@@ -43,9 +43,17 @@ public class QuestionController {
     	//System.out.println("Survey Id: " + surveyId + " published ver: " + publishedVersion);
     	List<Question> versions = questionsRepository.getSurveyVersionQuestions(surveyId, publishedVersion);   
 
-    	return versions;     
+    	return versions;
     }
-    
+
+    @GetMapping("/study/{studyId}/survey/{surveyId}/version/{publishedVersion}/questions/{version}/")
+    public List<Question> getQuestionVersions(@PathVariable Integer surveyId, @PathVariable Integer version)  {
+        List<Question> versionsList = questionsRepository.getQuestionVersions(surveyId, version);
+        return versionsList;
+    }
+
+
+
     @GetMapping("/study/{studyId}/survey/{surveyId}/version/{publishedVersion}/questions/responselist/")   
     public List<QuestionResponse> getQuestionResponseList(@PathVariable Integer studyId, @PathVariable Integer surveyId, @PathVariable Integer publishedVersion) {
     	List<QuestionResponse> answers = questionsRepository.getQuestionResponseList(studyId, surveyId, publishedVersion);
