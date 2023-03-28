@@ -69,6 +69,7 @@ export default function questionsList() {
         "response": "",
     }]);
 
+
     const  {studyId}  = useParams();
     const  {surveyId}  = useParams();
     const {versionId} = useParams();
@@ -93,10 +94,6 @@ export default function questionsList() {
         "chart_is_visible" : false,
     });
 
-    const setVersion = (survey, version) => {
-        survey.version = version;
-    }
-
     const loadData = async () => {
         const surveysResult = await axios.get(`http://localhost:8080/study/${studyId}/surveylist/`);
         setSurveys(surveysResult.data);
@@ -113,6 +110,10 @@ export default function questionsList() {
                 survey.version = versionId;
             }
         }
+    }
+
+    const setVersion = (questions, version) => {
+        questions.version = version;
     }
 
     useEffect(()=>{
@@ -155,6 +156,7 @@ export default function questionsList() {
                         <th>Type</th>
                         <th>Child Trigger</th>
                         <th>Version</th>
+                        <th>ParentId</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -171,8 +173,8 @@ export default function questionsList() {
                         <td>{q.type}</td>
                         <td>{q.childTriggeringInput}</td>
                         <td>{q.version}</td>
+                        <td>{q.parent_task_id === 0 ? " " : q.parent_task_id}</td>
                         </tr>
-
                         <td colSpan="6">
                           <div>
                             <Button variant="primary" onClick={() => toggleCollapse(index)}>

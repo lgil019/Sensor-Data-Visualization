@@ -43,7 +43,6 @@ public class QuestionController {
     	System.out.println("Survey Id: " + surveyId + " published ver: " + publishedVersion);
     	List<Question> versions = questionsRepository.getSurveyVersionQuestions(surveyId, publishedVersion);   
 
-    	return versions;     
-    }
-    
+    	return versions;
+    }    
 }

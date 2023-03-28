@@ -36,6 +36,9 @@ public class Question {
     @Column(name = "child_triggering_input")
 	private String childTriggeringInput;
 
+    private Integer parent_task_id;
+
+    private Integer has_parent;
 	public Integer getStudyId() {
         return studyId;
     }
@@ -95,5 +98,21 @@ public class Question {
 	public void setChildTriggeringInput(String childTriggeringInput) {
 		this.childTriggeringInput = childTriggeringInput;
 	}
+
+    public Integer getParent_task_id() {
+        return parent_task_id;
+    }
+
+    public void setParent_task_id(Integer parent_task_id) {
+        this.parent_task_id = parent_task_id;
+    }
+
+    public Integer getHas_parent() {
+        return has_parent;
+    }
+
+    public void setHas_parent(Integer has_parent) {
+        this.has_parent = has_parent;
+    }
 }
 
