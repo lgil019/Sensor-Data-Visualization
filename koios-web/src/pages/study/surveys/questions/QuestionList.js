@@ -151,7 +151,7 @@ export default function questionsList() {
                                 {surveys.map((survey, index) => (
                                     <Dropdown.Menu>
                                         {[...Array(survey.published_version)].map((x, version) => (
-                                            <Dropdown.Item href={`/study/${studyId}/survey/${surveyId}/version/${version+1}/questions/`} onClick={(e) => setVersion(survey, version+1)}>{version+1}</Dropdown.Item>
+                                            <Dropdown.Item href={`/study/${studyId}/survey/${surveyId}/version/${version+1}/questions/`} onClick={(e) => setVersion(survey, version+1)}>{(version+1) + " - " + survey.creationTime}</Dropdown.Item>
                                         ))}
                                     </Dropdown.Menu>
                                 ))}
