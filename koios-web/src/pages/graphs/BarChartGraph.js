@@ -46,11 +46,11 @@ function responsesCounter(choices, responses, type){
         for (let j = 0; j < freq.length; j++){
             if(responses[i].response == freq[j].name){
                 freq[j].amt++;
-                // console.log("freq[j].amt:");
-                // console.log(freq[j].amt);
             }
         }
     }
+    // console.log("freq:");
+    // console.log(freq);
 
     return(freq);
 }
@@ -95,7 +95,7 @@ export default function BarChartGraph(props) {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="amt" fill="#8884d8"/>
+            <Bar name="Number of entries" dataKey="amt" fill="#8884d8"/>
         </BarChart>
         </ResponsiveContainer>
 
