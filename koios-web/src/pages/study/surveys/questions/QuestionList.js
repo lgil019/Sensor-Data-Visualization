@@ -118,14 +118,17 @@ export default function questionsList() {
     }
 
     function getResponse(taskId) {
+        var filteredResponses = [];
         for(let i = 0; i < responses.length; i++) {
             console.log("Searching for Task Id: " + taskId + "...");
             if(responses[i].taskId == taskId) {
                 console.log("Found Task Id for response");
-                return responses[i];
+                filteredResponses.push(responses[i])
             }
         }
-        return responses[0];
+        // console.log("fR length: " + filteredResponses.length);
+        // console.log(filteredResponses);
+        return filteredResponses;
     }
 
     useEffect(()=>{
@@ -187,6 +190,7 @@ export default function questionsList() {
                         <td>{q.version}</td>
                         <td>{q.parent_task_id === 0 ? " " : q.parent_task_id}</td>
                         </tr>
+                          {q.type != "text" && q.type != "textarea" && (
                         <td colSpan="6">
                           <div>
                             <Button variant="primary" onClick={() => toggleCollapse(index)}>
@@ -198,7 +202,7 @@ export default function questionsList() {
                               </div>
                             </Collapse>
                           </div>
-                        </td>
+                        </td>)}
                         </>
                     ))}
                 </tbody>
