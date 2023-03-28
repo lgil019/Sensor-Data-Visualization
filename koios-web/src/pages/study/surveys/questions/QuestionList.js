@@ -117,7 +117,7 @@ export default function questionsList() {
         questions.version = version;
     }
 
-    function getResponse(taskId) {
+    function getResponses(taskId) {
         var filteredResponses = [];
         for(let i = 0; i < responses.length; i++) {
             console.log("Searching for Task Id: " + taskId + "...");
@@ -198,7 +198,7 @@ export default function questionsList() {
                             </Button>
                             <Collapse in={q.chart_is_visible}>
                               <div>
-                                <BarChartGraph data={q} response={getResponse(q.taskId)}/>
+                                <BarChartGraph data={q} responses={getResponses(q.taskId)}/>
                               </div>
                             </Collapse>
                           </div>

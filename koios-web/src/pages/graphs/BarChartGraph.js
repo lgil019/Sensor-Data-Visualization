@@ -22,16 +22,16 @@ import {
  * @returns BarChartGraph
  */
 
-function responseCounter(choices, response, type){
+function responsesCounter(choices, responses, type){
     let freq = [];
 
-    console.log("choices in responseCounter:");
+    console.log("choices in responsesCounter:");
     console.log(choices);
-    console.log("response in responseCounter:");
-    console.log(response);
-    console.log("response length in responseCounter:");
-    console.log(response.length);
-    console.log("type in responseCounter:");
+    console.log("responses in responsesCounter:");
+    console.log(responses);
+    console.log("responses length in responsesCounter:");
+    console.log(responses.length);
+    console.log("type in responsesCounter:");
     console.log(type);
 
 
@@ -42,9 +42,9 @@ function responseCounter(choices, response, type){
         })
     }
 
-    for (let i = 0; i < response.length; i++){
+    for (let i = 0; i < responses.length; i++){
         for (let j = 0; j < freq.length; j++){
-            if(response[i].response == freq[j].name){
+            if(responses[i].response == freq[j].name){
                 freq[j].amt++;
                 // console.log("freq[j].amt:");
                 // console.log(freq[j].amt);
@@ -71,18 +71,18 @@ const CustomizedAxisTick = ({ x, y, payload }) => {
 
 export default function BarChartGraph(props) {
 
-    // console.log("Response:");
-    // console.log(props.response);
+    // console.log("Responses:");
+    // console.log(props.responses);
     var choices = props.data.answers.split("|");
     var possibleChoices = choices.length;
 
     return (
         <Container>
           <div>{props.question}</div>
-          <div>{props.response.version}</div>
+          <div>{props.responses.version}</div>
         <ResponsiveContainer width="100%" height={400}>
         <BarChart
-          data={responseCounter(choices, props.response, props.data.type)}
+          data={responsesCounter(choices, props.responses, props.data.type)}
             margin={{
             top: 5,
             right: 30,
