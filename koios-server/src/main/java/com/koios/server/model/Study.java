@@ -1,11 +1,9 @@
 package com.koios.server.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import javax.persistence.Column;
-import javax.persistence.Table;
 /**
  * The {@code Study} represents a database Study entry which pertains to a specific research containing data on the individuals
  * participating in the study with their fitness data
@@ -200,7 +198,7 @@ public class Study {
 	/**
 	 * @param state the state to set
 	 */
-	public void setStatus(Integer state) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 	/**

@@ -26,9 +26,12 @@ export default function BarChartGraph(props) {
    //console.log("Response" + props.response);
     var choices = props.data.answers.split("|");
     var possibleChoices = choices.length;
+
+    console.log("Props " + props.data);
     return (
         <Container>
           <div>{props.question}</div>
+          <div>{props.response.version}</div>
         <ResponsiveContainer width="100%" height={400}>
         <BarChart
             data={props.data}

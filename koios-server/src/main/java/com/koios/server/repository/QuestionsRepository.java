@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.koios.server.model.Question;
-import com.koios.server.model.QuestionResponse;
 
 public interface QuestionsRepository extends JpaRepository<Question, Long> {
 

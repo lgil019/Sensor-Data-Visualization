@@ -64,6 +64,7 @@ export default function questionsList() {
     const[responses, setResponses] = useState([{
         "studyId": "",
         "surveyId": "",
+        "version": "",
         "taskId": "",
         "responseType": "",
         "response": "",
@@ -102,7 +103,7 @@ export default function questionsList() {
         console.log(result.data);
         const answersResult = await axios.get(`http://localhost:8080/study/${studyId}/survey/${surveyId}/version/${versionId}/questions/responselist/`);
         setResponses(answersResult.data);
-        console.log("responses: " + answersResult.data);
+        console.dir(answersResult.data);
 
         for(let i = 0; i < surveys.length; i++) {
             if(surveys[i].version == versionId) {
@@ -114,6 +115,17 @@ export default function questionsList() {
 
     const setVersion = (questions, version) => {
         questions.version = version;
+    }
+
+    function getResponse(taskId) {
+        for(let i = 0; i < responses.length; i++) {
+            console.log("Searching for Task Id: " + taskId + "...");
+            if(responses[i].taskId == taskId) {
+                console.log("Found Task Id for response");
+                return responses[i];
+            }
+        }
+        return responses[0];
     }
 
     useEffect(()=>{
@@ -182,7 +194,7 @@ export default function questionsList() {
                             </Button>
                             <Collapse in={q.chart_is_visible}>
                               <div>
-                                <BarChartGraph data={q} response={responses}/>
+                                <BarChartGraph data={q} response={getResponse(q.taskId)}/>
                               </div>
                             </Collapse>
                           </div>

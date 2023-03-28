@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.koios.server.model.Question;
-import com.koios.server.model.QuestionResponse;
 import com.koios.server.repository.QuestionsRepository;
 
 @RestController
