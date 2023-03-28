@@ -2,7 +2,7 @@
 import React, {useState, useEffect} from "react";
 import {Link, useParams} from "react-router-dom";
 import axios from 'axios';
-import { Button, Collapse, Container, Table } from 'react-bootstrap';
+import { Button, Collapse, Container, Table, Dropdown } from 'react-bootstrap';
 import BarChartGraph from '../../../graphs/BarChartGraph';
 
 /**
@@ -12,6 +12,32 @@ import BarChartGraph from '../../../graphs/BarChartGraph';
  */
 export default function questionsList() {
 
+        /**
+     * Create the study object here
+     */
+        const[surveys, setSurveys] = useState([{
+            "creationTime" : "",
+            "creation_time_zone_offset" : "",
+            "description" : "",
+            "end_time" : "",
+            "end_time_zone_offset" : "",
+            "id": 0,
+            "lifecycle": "",
+            "modification_time": "",
+            "modification_time_zone_offset": "",
+            "name": "",
+            "published_time": "",
+            "published_time_zone_offset": "",
+            "published_version" : "",
+            "responseCount" : "",
+            "schedule" : "",
+            "start_time" : "",
+            "start_time_zone_offset" : "",
+            "state" : "",
+            "study_id" : "",
+            "version" : "",
+        }]);
+    // - {survey.creationTime.split(" ")[0]}
         /**
      * Create the study object here
      */
@@ -47,13 +73,46 @@ export default function questionsList() {
     const  {surveyId}  = useParams();
     const {versionId} = useParams();
 
+    const[survey, setSurvey] = useState({
+        "studyId" : "",
+        "surveyId" : "",
+        "version" : "",
+        "taskId" : "",
+        "question" : "",
+        "id": 0,
+        "type": "",
+        "answers": "",
+        "order_id": "",
+        "is_active": "",
+        "is_required": "",
+        "has_comment": "",
+        "has_url" : "",
+        "parent_task_id" : "",
+        "has_parent" : "",
+        "child_triggering_input" : "",
+        "chart_is_visible" : false,
+    });
+
+    const setVersion = (survey, version) => {
+        survey.version = version;
+    }
+
     const loadData = async () => {
+        const surveysResult = await axios.get(`http://localhost:8080/study/${studyId}/surveylist/`);
+        setSurveys(surveysResult.data);
         const result = await axios.get(`http://localhost:8080/study/${studyId}/survey/${surveyId}/version/${versionId}/questions/`);
         setQuestions(result.data);
         console.log(result.data);
         const answersResult = await axios.get(`http://localhost:8080/study/${studyId}/survey/${surveyId}/version/${versionId}/questions/responselist/`);
         setResponses(answersResult.data);
         console.log("responses: " + answersResult.data);
+
+        for(let i = 0; i < surveys.length; i++) {
+            if(surveys[i].version == versionId) {
+                setSurvey(surveys[i]);
+                survey.version = versionId;
+            }
+        }
     }
 
     useEffect(()=>{
@@ -71,6 +130,20 @@ export default function questionsList() {
     return (
         <Container>
 
+            <Dropdown>
+
+                                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                    {"Select Version: " + versionId}
+                                </Dropdown.Toggle>
+                                {surveys.map((survey, index) => (
+                                    <Dropdown.Menu>
+                                        {[...Array(survey.published_version)].map((x, version) => (
+                                            <Dropdown.Item href={`/study/${studyId}/survey/${surveyId}/version/${version+1}/questions/`} onClick={(e) => setVersion(survey, version+1)}>{version+1}</Dropdown.Item>
+                                        ))}
+                                    </Dropdown.Menu>
+                                ))}
+            </Dropdown>
+            
             <Table>
                 <thead>
                     <tr>
@@ -99,7 +172,7 @@ export default function questionsList() {
                         <td>{q.childTriggeringInput}</td>
                         <td>{q.version}</td>
                         </tr>
-                        <tr>
+
                         <td colSpan="6">
                           <div>
                             <Button variant="primary" onClick={() => toggleCollapse(index)}>
@@ -112,7 +185,6 @@ export default function questionsList() {
                             </Collapse>
                           </div>
                         </td>
-                        </tr>
                         </>
                     ))}
                 </tbody>

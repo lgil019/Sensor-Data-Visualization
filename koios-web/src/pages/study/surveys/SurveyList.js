@@ -61,7 +61,6 @@ export default function SurveyList() {
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
-                        <th>Version</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,21 +71,7 @@ export default function SurveyList() {
                         </th>
                         <td align = "left">{survey.name}</td>
                         <td>
-                            <Dropdown>
-                                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                    {!survey.version ? "Select Version" : survey.version}
-                                </Dropdown.Toggle>
-                                    
-                                <Dropdown.Menu>
-                                       {[...Array(survey.published_version)].map((x, version) => (
-                                            <Dropdown.Item href={`#/action-${version+1}`} onClick={(e) => setVersion(survey, version+1)}>{version+1} - {survey.creationTime.split(" ")[0]}</Dropdown.Item>
-                                       ))}
-                                   
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </td>
-                        <td>
-                            <Link className="btn btn-success mx-2" to={`/study/${studyId}/survey/${survey.id}/version/${survey.version}/questions/`}>
+                            <Link className="btn btn-success mx-2" to={`/study/${studyId}/survey/${survey.id}/version/${1}/questions/`}>
                                 Questions
                             </Link>
                         </td>
