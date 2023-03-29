@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.koios.server.model.Question;
-import com.koios.server.model.QuestionResponse;
 import com.koios.server.repository.QuestionsRepository;
 
 @RestController
@@ -40,22 +39,9 @@ public class QuestionController {
     @GetMapping("/study/{studyId}/survey/{surveyId}/version/{publishedVersion}/questions/")     
     public List<Question> getSurveyVersionQuestions(@PathVariable Integer surveyId, @PathVariable Integer publishedVersion) {    
     	
-    	//System.out.println("Survey Id: " + surveyId + " published ver: " + publishedVersion);
+    	System.out.println("Survey Id: " + surveyId + " published ver: " + publishedVersion);
     	List<Question> versions = questionsRepository.getSurveyVersionQuestions(surveyId, publishedVersion);   
 
-    	return versions;     
-    }
-    
-    @GetMapping("/study/{studyId}/survey/{surveyId}/version/{publishedVersion}/questions/responselist/")   
-    public List<QuestionResponse> getQuestionResponseList(@PathVariable Integer studyId, @PathVariable Integer surveyId, @PathVariable Integer publishedVersion) {
-    	List<QuestionResponse> answers = questionsRepository.getQuestionResponseList(studyId, surveyId, publishedVersion);
-    	
-    	System.out.println("Grabbing responses...");
-    	System.out.println("Response list size: " + answers.size());
-    	for(QuestionResponse answ : answers) {
-    		System.out.println(answ.getResponse());
-    	}
-    	return answers;
-    }
-    
+    	return versions;
+    }    
 }

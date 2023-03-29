@@ -34,4 +34,15 @@ public class SurveyController {
         return surveys;
     }
     
+    @GetMapping("/study/{studyId}/survey/{surveyId}")
+    public Survey getSurveyList(@PathVariable Integer studyId, @PathVariable Integer surveyId) {
+        List<Survey> surveys = surveyRepository.getSurveyList(studyId);
+        
+        for(Survey survey : surveys) {
+        	if(survey.getId() == surveyId)
+        		return survey;
+        }
+        return null;
+    }
+    
 }
