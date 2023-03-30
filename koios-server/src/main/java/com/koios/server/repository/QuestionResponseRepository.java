@@ -15,7 +15,4 @@ public interface QuestionResponseRepository extends JpaRepository<QuestionRespon
     		nativeQuery = true)
     public List<QuestionResponse> getQuestionResponseList(Integer study_id, Integer survey_id, Integer version);
 
-	//@Query(value = "SELECT *, COUNT DISTINCT(response), FROM survey_response, GROUP_BY version", nativeQuery = true);
-
-
 }
