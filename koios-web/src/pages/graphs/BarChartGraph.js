@@ -92,7 +92,7 @@ export default function BarChartGraph(props) {
         >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" tick={<CustomizedAxisTick />} interval={0} angle={-45} textAnchor="end" height={80}/>
-            <YAxis />
+            <YAxis allowDecimals={false} />
             <Tooltip />
             <Legend />
             <Bar name="Number of entries" dataKey="amt" fill="#8884d8"/>

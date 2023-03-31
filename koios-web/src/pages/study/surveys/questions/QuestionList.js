@@ -172,6 +172,7 @@ export default function questionsList() {
                         <th>Child Trigger</th>
                         <th>Version</th>
                         <th>ParentId</th>
+                        <th>Show Graph</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -189,13 +190,17 @@ export default function questionsList() {
                         <td>{q.childTriggeringInput}</td>
                         <td>{q.version}</td>
                         <td>{q.parent_task_id === 0 ? " " : q.parent_task_id}</td>
-                        </tr>
-                          {q.type != "text" && q.type != "textarea" && (
-                        <td colSpan="6">
-                          <div>
+                        {q.type != "text" && q.type != "textarea" ? (
+                        <td>
                             <Button variant="primary" onClick={() => toggleCollapse(index)}>
                               {q.chart_is_visible ? "Collapse" : "Expand"}
                             </Button>
+                        </td>) : <td></td>}
+
+                        </tr>
+                          {q.type != "text" && q.type != "textarea" && (
+                        <td colSpan="7">
+                          <div>
                             <Collapse in={q.chart_is_visible}>
                               <div>
                                 <BarChartGraph data={q} responses={getResponses(q.taskId)}/>
