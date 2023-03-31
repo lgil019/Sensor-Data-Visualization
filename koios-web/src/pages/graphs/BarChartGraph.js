@@ -25,14 +25,14 @@ import {
 function responsesCounter(choices, responses, type){
     let freq = [];
 
-    console.log("choices in responsesCounter:");
-    console.log(choices);
-    console.log("responses in responsesCounter:");
-    console.log(responses);
-    console.log("responses length in responsesCounter:");
-    console.log(responses.length);
-    console.log("type in responsesCounter:");
-    console.log(type);
+    // console.log("choices in responsesCounter:");
+    // console.log(choices);
+    // console.log("responses in responsesCounter:");
+    // console.log(responses);
+    // console.log("responses length in responsesCounter:");
+    // console.log(responses.length);
+    // console.log("type in responsesCounter:");
+    // console.log(type);
 
 
     for (let i = 0; i < choices.length; i++){
@@ -69,12 +69,40 @@ const CustomizedAxisTick = ({ x, y, payload }) => {
   );
 };
 
+function percentCalc(label, data) {
+    let total = 0;
+    let freq = 0;
+    for (let i = 0; i < data.length; i++){
+        total += data[i].amt;
+    }
+    for (let i = 0; i < data.length; i++){
+        if(data[i].name == label){
+            freq = data[i].amt;
+        }
+    }
+    return(freq/total * 100 + "%");
+}
+
+const CustomToolTip = ({ active, payload, label, data}) => {
+  if (active) {
+    return (
+      <div className="custom-tooltip">
+        <p className="label">{`${label} : ${payload[0].value}`}</p>
+        <p className="percentage">Percentage: {percentCalc(label, data)}</p>
+      </div>
+    );
+  }
+
+  return null;
+};
+
 export default function BarChartGraph(props) {
 
     // console.log("Responses:");
     // console.log(props.responses);
     var choices = props.data.answers.split("|");
     var possibleChoices = choices.length;
+    var data = responsesCounter(choices, props.responses, props.data.type);
 
     return (
         <Container>
@@ -82,7 +110,7 @@ export default function BarChartGraph(props) {
           <div>{props.responses.version}</div>
         <ResponsiveContainer width="100%" height={400}>
         <BarChart
-          data={responsesCounter(choices, props.responses, props.data.type)}
+          data={data}
             margin={{
             top: 5,
             right: 30,
@@ -93,7 +121,7 @@ export default function BarChartGraph(props) {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" tick={<CustomizedAxisTick />} interval={0} angle={-45} textAnchor="end" height={80}/>
             <YAxis allowDecimals={false} />
-            <Tooltip />
+          <Tooltip content={<CustomToolTip data={data}/>}/>
             <Legend />
             <Bar name="Number of entries" dataKey="amt" fill="#8884d8"/>
         </BarChart>

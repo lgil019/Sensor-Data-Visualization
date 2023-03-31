@@ -126,8 +126,8 @@ export default function questionsList() {
                 filteredResponses.push(responses[i])
             }
         }
-        // console.log("fR length: " + filteredResponses.length);
-        // console.log(filteredResponses);
+        console.log("fR length: " + filteredResponses.length+ ", task_id: " + taskId);
+        console.log(filteredResponses);
         return filteredResponses;
     }
 
