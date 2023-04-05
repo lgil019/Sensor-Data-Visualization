@@ -29,4 +29,19 @@ public class QuestionResponseController {
     	}
     	return answers;
     }
+
+	@GetMapping("/study/{studyId}/survey/{surveyId}/version/{publishedVersion}/questions/responses/")
+
+
+public List<Object[] > countByResponseCount(@PathVariable Integer studyId, @PathVariable Integer surveyId, @PathVariable Integer publishedVersion) {
+		List<Object[]> Count = responseRepository.countByResponseCount(studyId, surveyId, publishedVersion);
+		for (Object[] Counts : Count) {
+			System.out.println(Counts[0]);
+		}
+		return Count;
+	}
+
+
+
+
 }
