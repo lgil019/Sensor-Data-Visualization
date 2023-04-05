@@ -15,7 +15,7 @@ public interface QuestionResponseRepository extends JpaRepository<QuestionRespon
     		nativeQuery = true)
     public List<QuestionResponse> getQuestionResponseList(Integer study_id, Integer survey_id, Integer version);
 
-	@Query(value = "SELECT version COUNT(response_summary_id) FROM survey_response GROUP_BY version", nativeQuery = true)
+	@Query(value = "SELECT version COUNT(response) FROM survey_response GROUP_BY version", nativeQuery = true)
 	public List<QuestionResponse> countByVersion(Integer study_id, Integer survey_id, Integer version);
 
 
