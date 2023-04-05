@@ -15,33 +15,30 @@ import com.koios.server.repository.QuestionResponseRepository;
 @CrossOrigin("http://localhost:3000")
 public class QuestionResponseController {
 
-    @Autowired
-    private QuestionResponseRepository responseRepository;
-    
-    @GetMapping("/study/{studyId}/survey/{surveyId}/version/{publishedVersion}/questions/responselist/")   
-    public List<QuestionResponse> getQuestionResponseList(@PathVariable Integer studyId, @PathVariable Integer surveyId, @PathVariable Integer publishedVersion) {
-    	List<QuestionResponse> answers = responseRepository.getQuestionResponseList(studyId, surveyId, publishedVersion);
-    	
-    	System.out.println("Grabbing responses...");
-    	System.out.println("Response list size: " + answers.size());
-    	for(QuestionResponse answ : answers) {
-    		System.out.println(answ.getResponse());
-    	}
-    	return answers;
-    }
+	@Autowired
+	private QuestionResponseRepository responseRepository;
 
-	@GetMapping("/study/{studyId}/survey/{surveyId}/version/{publishedVersion}/questions/responses/")
+	@GetMapping("/study/{studyId}/survey/{surveyId}/version/{publishedVersion}/questions/responselist/")
+	public List<QuestionResponse> getQuestionResponseList(@PathVariable Integer studyId, @PathVariable Integer surveyId,
+			@PathVariable Integer publishedVersion) {
+		List<QuestionResponse> answers = responseRepository.getQuestionResponseList(studyId, surveyId,
+				publishedVersion);
 
-
-public List<Object[] > countByResponseCount(@PathVariable Integer studyId, @PathVariable Integer surveyId, @PathVariable Integer publishedVersion) {
-		List<Object[]> Count = responseRepository.countByResponseCount(studyId, surveyId, publishedVersion);
-		for (Object[] Counts : Count) {
-			System.out.println(Counts[0]);
+		System.out.println("Grabbing responses...");
+		System.out.println("Response list size: " + answers.size());
+		for (QuestionResponse answ : answers) {
+			System.out.println(answ.getResponse());
 		}
-		return Count;
+		return answers;
 	}
 
+	@GetMapping("/study/{studyId}/survey/{surveyId}/version/{publishedVersion}/questions/responses/")
+	public Integer getTotalResponses(@PathVariable Integer studyId, @PathVariable Integer surveyId,
+			@PathVariable Integer publishedVersion) {
+		Integer count = responseRepository.getTotalResponses(studyId, surveyId, publishedVersion);
 
-
+		System.out.println("Total count: " + count);
+		return count;
+	}
 
 }

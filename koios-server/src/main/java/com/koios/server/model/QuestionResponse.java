@@ -38,8 +38,6 @@ public class QuestionResponse {
 
 	@Column(name = "response")
 	private String response;
-    @Column(name = "Count")
-	private Long responseCount;
 
 	public Integer getStudyId() {
 		return studyId;
@@ -88,8 +86,4 @@ public class QuestionResponse {
 	public void setResponse(String response) {
 		this.response = response;
 	}
-
-	public Long getResponseCount() {return responseCount;}
-
-	public void setResponseCount(Long responseCount) {this.responseCount = responseCount;}
 }

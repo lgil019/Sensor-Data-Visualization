@@ -9,7 +9,7 @@ import com.koios.server.model.QuestionResponse;
 
 public interface QuestionResponseRepository extends JpaRepository<QuestionResponse, Long>{
 
-    @Query(value = "SELECT *, COUNT(response)"
+    @Query(value = "SELECT *"
     		+ " FROM survey_response "
     		+ " WHERE study_id = ?1 AND survey_id = ?2 AND version = ?3", 
     		nativeQuery = true)
@@ -17,8 +17,10 @@ public interface QuestionResponseRepository extends JpaRepository<QuestionRespon
 
 
 
-	@Query(value = "select  version, count(response_summary_id) as \"Count\" from (Select response_summary_id, version from survey_response where survey_id = ? ) as responses group by version", nativeQuery = true)
-	public List<Object[]> countByResponseCount( Integer study_id, Integer survey_id, Integer version);
+	@Query(value = "SELECT COUNT(*) AS \"Count\""
+			+ " FROM survey_response WHERE study_id = ?1 AND survey_id = ?2 AND version =?3"
+			+ " GROUP BY \"Count\"", nativeQuery = true)
+	public Integer getTotalResponses(Integer study_id, Integer survey_id, Integer version);
 
 
 }
