@@ -87,4 +87,12 @@ public class QuestionResponse {
 		this.response = response;
 	}
 
+	public void setResponseCount() {
+		this.response = response;
+	}
+
+    public char[] getResponseCount() {
+        return null;
+    }
+
 }
