@@ -27,29 +27,58 @@ function responsesCounter(choices, responses, type){
 
     // console.log("choices in responsesCounter:");
     // console.log(choices);
-    // console.log("responses in responsesCounter:");
-    // console.log(responses);
+    console.log("responses in responsesCounter:");
+    console.log(responses);
     // console.log("responses length in responsesCounter:");
     // console.log(responses.length);
     // console.log("type in responsesCounter:");
     // console.log(type);
 
+    if(type == "numberpicker"){
+        //Create entries
+        let max = 5;
+        for (let i = 0; i < choices.length; i++){
+            // console.log("numberpicker response:");
+            // console.log(choices[i].response);
+            if (choices[i].response > max)
+                max = choices[i].response;
+        }
+        // console.log("max:");
+        // console.log(max);
+        for(let j = 1; j <= max; j++){
+            freq.push({
+                name: j.toString(),
+                amt: 0,
+            });
+        }
+        //Fill entries
+        for (let i = 0; i < responses.length; i++){
+            for (let j = 0; j < freq.length; j++){
+                if(responses[i].response == freq[j].name){
+                    console.log("Adding numberpicker response:");
+                    console.log(responses[i].response.toString());
+                    freq[j].amt++;
+                }
+            }
+        }
+    }else{
 
-    for (let i = 0; i < choices.length; i++){
-        freq.push({
-            name: choices[i],
-            amt: 0,
-        })
-    }
+        for (let i = 0; i < choices.length; i++){
+            freq.push({
+                name: choices[i],
+                amt: 0,
+            });
+        }
 
-    for (let i = 0; i < responses.length; i++){
-        for (let j = 0; j < freq.length; j++){
-            if(responses[i].response == freq[j].name){
-                freq[j].amt++;
+        for (let i = 0; i < responses.length; i++){
+            for (let j = 0; j < freq.length; j++){
+                if(responses[i].response == freq[j].name){
+                    freq[j].amt++;
+                }
             }
         }
     }
-    // console.log("freq:");
+    // console.log("freq for type " + type + ":");
     // console.log(freq);
 
     return(freq);
@@ -98,10 +127,9 @@ const CustomToolTip = ({ active, payload, label, data}) => {
 
 export default function BarChartGraph(props) {
 
-    // console.log("Responses:");
-    // console.log(props.responses);
+    console.log("Responses:");
+    console.log(props.responses);
     var choices = props.data.answers.split("|");
-    var possibleChoices = choices.length;
     var data = responsesCounter(choices, props.responses, props.data.type);
 
     return (
