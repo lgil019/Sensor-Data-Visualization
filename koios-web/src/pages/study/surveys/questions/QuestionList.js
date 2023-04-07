@@ -131,6 +131,14 @@ export default function questionsList() {
         return filteredResponses;
     }
 
+    function getNumResponses(taskId){
+        let count = 0;
+        for(let i = 0; i < responses.length; i++)
+            if(responses[i].taskId == taskId)
+                count++;
+        return count;
+    }
+
     useEffect(()=>{
         loadData();
     }, []);
@@ -170,7 +178,7 @@ export default function questionsList() {
                         <th align = "Left" >Question</th>
                         <th>Type</th>
                         <th>Child Trigger</th>
-                        <th>Version</th>
+                        <th>Number of repsonses</th>
                         <th>ParentId</th>
                         <th>Show Graph</th>
                     </tr>
@@ -188,7 +196,7 @@ export default function questionsList() {
                         <td align = "Left">{q.question}</td>
                         <td>{q.type}</td>
                         <td>{q.childTriggeringInput}</td>
-                        <td>{q.version}</td>
+                        <td>{getNumResponses(q.taskId)}</td>
                         <td>{q.parent_task_id === 0 ? " " : q.parent_task_id}</td>
                           {q.type != "text" && q.type != "textarea" && q.type != "instruction" && q.type != "recording" && q.type != "fileuploader" ? (
                         <td>
