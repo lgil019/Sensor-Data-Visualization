@@ -190,7 +190,7 @@ export default function questionsList() {
                         <td>{q.childTriggeringInput}</td>
                         <td>{q.version}</td>
                         <td>{q.parent_task_id === 0 ? " " : q.parent_task_id}</td>
-                        {q.type != "text" && q.type != "textarea" ? (
+                          {q.type != "text" && q.type != "textarea" && q.type != "instruction" && q.type != "recording" && q.type != "fileuploader" ? (
                         <td>
                             <Button variant="primary" onClick={() => toggleCollapse(index)}>
                               {q.chart_is_visible ? "Collapse" : "Expand"}
