@@ -126,9 +126,17 @@ export default function questionsList() {
                 filteredResponses.push(responses[i])
             }
         }
-        // console.log("fR length: " + filteredResponses.length);
-        // console.log(filteredResponses);
+        console.log("fR length: " + filteredResponses.length+ ", task_id: " + taskId);
+        console.log(filteredResponses);
         return filteredResponses;
+    }
+
+    function getNumResponses(taskId){
+        let count = 0;
+        for(let i = 0; i < responses.length; i++)
+            if(responses[i].taskId == taskId)
+                count++;
+        return count;
     }
 
     useEffect(()=>{
@@ -170,8 +178,9 @@ export default function questionsList() {
                         <th align = "Left" >Question</th>
                         <th>Type</th>
                         <th>Child Trigger</th>
-                        <th>Version</th>
+                        <th>Number of repsonses</th>
                         <th>ParentId</th>
+                        <th>Show Graph</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -187,15 +196,19 @@ export default function questionsList() {
                         <td align = "Left">{q.question}</td>
                         <td>{q.type}</td>
                         <td>{q.childTriggeringInput}</td>
-                        <td>{q.version}</td>
+                        <td>{getNumResponses(q.taskId)}</td>
                         <td>{q.parent_task_id === 0 ? " " : q.parent_task_id}</td>
-                        </tr>
-                          {q.type != "text" && q.type != "textarea" && (
-                        <td colSpan="6">
-                          <div>
+                          {q.type != "text" && q.type != "textarea" && q.type != "instruction" && q.type != "recording" && q.type != "fileuploader" ? (
+                        <td>
                             <Button variant="primary" onClick={() => toggleCollapse(index)}>
                               {q.chart_is_visible ? "Collapse" : "Expand"}
                             </Button>
+                        </td>) : <td></td>}
+
+                        </tr>
+                          {q.type != "text" && q.type != "textarea" && (
+                        <td colSpan="7">
+                          <div>
                             <Collapse in={q.chart_is_visible}>
                               <div>
                                 <BarChartGraph data={q} responses={getResponses(q.taskId)}/>

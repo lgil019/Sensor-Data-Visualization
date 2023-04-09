@@ -314,3 +314,9 @@ a {
 
 .dropdown-item:hover {
   background: #fcfcfc; }
+
+.custom-tooltip {
+  border: 1px solid #ccc;
+  background-color: white;
+  padding: 10px;
+}

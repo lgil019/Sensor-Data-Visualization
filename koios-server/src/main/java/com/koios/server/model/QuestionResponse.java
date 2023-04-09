@@ -39,9 +39,6 @@ public class QuestionResponse {
 	@Column(name = "response")
 	private String response;
 
-	@Column(name = "Count")
-	private Integer count;
-
 	public Integer getStudyId() {
 		return studyId;
 	}
@@ -89,13 +86,4 @@ public class QuestionResponse {
 	public void setResponse(String response) {
 		this.response = response;
 	}
-
-	public void setResponseCount(Integer count) {
-		this.count = count;
-	}
-
-    public Integer getResponseCount() {
-        return count;
-    }
-
 }
