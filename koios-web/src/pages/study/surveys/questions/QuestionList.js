@@ -70,32 +70,12 @@ export default function questionsList() {
         "response": "",
     }]);
 
+    const[responseCount, setResponseCount] = useState([]);
+
 
     const  {studyId}  = useParams();
     const  {surveyId}  = useParams();
     const {versionId} = useParams();
-
-    const[survey, setSurvey] = useState({
-        "studyId" : "",
-        "surveyId" : "",
-        "version" : "",
-        "taskId" : "",
-        "question" : "",
-        "id": 0,
-        "type": "",
-        "answers": "",
-        "order_id": "",
-        "is_active": "",
-        "is_required": "",
-        "has_comment": "",
-        "has_url" : "",
-        "parent_task_id" : "",
-        "has_parent" : "",
-        "child_triggering_input" : "",
-        "chart_is_visible" : false,
-    });
-
-    var responseCounts = [];
 
     const loadData = async () => {
         const surveysResult = await axios.get(`http://localhost:8080/study/${studyId}/surveylist/`);
@@ -106,21 +86,10 @@ export default function questionsList() {
         const answersResult = await axios.get(`http://localhost:8080/study/${studyId}/survey/${surveyId}/version/${versionId}/questions/responselist/`);
         setResponses(answersResult.data);
         console.dir(answersResult.data);
-        console.log("response list: " + answersResult.data);
 
-        console.log("Surveys length: " + surveys.length);
-        for(let i = 0; i < surveys.length; i++) {
-            const responseCountResult = await axios.get(`http://localhost:8080/study/${studyId}/survey/${surveyId}/version/${versionId}/questions/responses/`)
-            responseCounts.push(responseCountResult.data);
-        } 
+        const responseCountResult = await axios.get(`http://localhost:8080/study/${studyId}/survey/${surveyId}/version/${versionId}/questions/responses/`)
+        setResponseCount(responseCountResult.data);
 
-
-        for(let i = 0; i < surveys.length; i++) {
-            if(surveys[i].version == versionId) {
-                setSurvey(surveys[i]);
-                survey.version = versionId;
-            }
-        }
     }
 
     const setVersion = (questions, version) => {
@@ -131,7 +100,7 @@ export default function questionsList() {
         var filteredResponses = [];
         for(let i = 0; i < responses.length; i++) {
             //console.log("Searching for Task Id: " + taskId + "...");
-            if(responses[i].taskId == taskId) {
+            if(responses[i].taskId === taskId) {
                 //console.log("Found Task Id for response");
                 filteredResponses.push(responses[i])
             }
@@ -144,7 +113,7 @@ export default function questionsList() {
     function getNumResponses(taskId){
         let count = 0;
         for(let i = 0; i < responses.length; i++)
-            if(responses[i].taskId == taskId)
+            if(responses[i].taskId === taskId)
                 count++;
         return count;
     }
@@ -169,13 +138,13 @@ export default function questionsList() {
                                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                                     {"Select Version: " + versionId}
                                 </Dropdown.Toggle>
-                                {surveys.map((survey, index) => (
+                                
                                     <Dropdown.Menu>
-                                        {[...Array(survey.published_version)].map((x, version) => (
-                                            <Dropdown.Item href={`/study/${studyId}/survey/${surveyId}/version/${version+1}/questions/`} onClick={(e) => setVersion(survey, version+1)}>{(version+1) + " - " + survey.creationTime.substring(0,10) + " responses: " + responseCounts[version]}</Dropdown.Item>
+                                        {surveys.map((survey, index) => (
+                                            <Dropdown.Item href={`/study/${studyId}/survey/${surveyId}/version/${index+1}/questions/`} onClick={(e) => setVersion(survey, index+1)}>{(index+1) + " - " + survey.creationTime.substring(0,10) + " responses: " + responseCount[index+1]}</Dropdown.Item>
                                         ))}
                                     </Dropdown.Menu>
-                                ))}
+                                
             </Dropdown>
             
             <Table>
@@ -208,7 +177,7 @@ export default function questionsList() {
                         <td>{q.childTriggeringInput}</td>
                         <td>{getNumResponses(q.taskId)}</td>
                         <td>{q.parent_task_id === 0 ? " " : q.parent_task_id}</td>
-                          {q.type != "text" && q.type != "textarea" && q.type != "instruction" && q.type != "recording" && q.type != "fileuploader" ? (
+                          {q.type !== "text" && q.type !== "textarea" && q.type !== "instruction" && q.type !== "recording" && q.type !== "fileuploader" ? (
                         <td>
                             <Button variant="primary" onClick={() => toggleCollapse(index)}>
                               {q.chart_is_visible ? "Collapse" : "Expand"}
@@ -216,7 +185,7 @@ export default function questionsList() {
                         </td>) : <td></td>}
 
                         </tr>
-                          {q.type != "text" && q.type != "textarea" && (
+                          {q.type !== "text" && q.type !== "textarea" && (
                         <td colSpan="7">
                           <div>
                             <Collapse in={q.chart_is_visible}>

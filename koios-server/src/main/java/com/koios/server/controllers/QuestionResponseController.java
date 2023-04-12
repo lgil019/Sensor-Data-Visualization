@@ -1,5 +1,6 @@
 package com.koios.server.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class QuestionResponseController {
 
 	@Autowired
 	private QuestionResponseRepository responseRepository;
-
+	
 	@GetMapping("/study/{studyId}/survey/{surveyId}/version/{publishedVersion}/questions/responselist/")
 	public List<QuestionResponse> getQuestionResponseList(@PathVariable Integer studyId, @PathVariable Integer surveyId,
 			@PathVariable Integer publishedVersion) {
@@ -33,12 +34,24 @@ public class QuestionResponseController {
 	}
 
 	@GetMapping("/study/{studyId}/survey/{surveyId}/version/{publishedVersion}/questions/responses/")
-	public Integer getTotalResponses(@PathVariable Integer studyId, @PathVariable Integer surveyId,
+	public List<Integer> getTotalResponses(@PathVariable Integer studyId, @PathVariable Integer surveyId,
 			@PathVariable Integer publishedVersion) {
-		Integer count = responseRepository.getTotalResponses(studyId, surveyId, publishedVersion);
+		
+		
+		int maxVersion = responseRepository.getMaxVersion(studyId, surveyId);
+		
+		System.out.println("Max version " + maxVersion);
+		List<Integer> responses = new ArrayList<>();
+		for(int i = 0; i <= maxVersion; i++) {
+			int maxResponseCount = responseRepository.getResponseCount(studyId, surveyId, i);
+			responses.add(maxResponseCount);
+			System.out.println("version: " + i + " resp-count: " + responses.get(i));
+		}
+		
+		//Integer count = responseRepository.getTotalResponses(studyId, surveyId, publishedVersion);
 
-		System.out.println("Total count: " + count);
-		return count;
+		//System.out.println("Total count: " + count);
+		return responses;
 	}
 
 }
