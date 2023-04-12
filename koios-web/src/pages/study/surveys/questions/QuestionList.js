@@ -95,15 +95,25 @@ export default function questionsList() {
         "chart_is_visible" : false,
     });
 
+    var responseCounts = [];
+
     const loadData = async () => {
         const surveysResult = await axios.get(`http://localhost:8080/study/${studyId}/surveylist/`);
         setSurveys(surveysResult.data);
         const result = await axios.get(`http://localhost:8080/study/${studyId}/survey/${surveyId}/version/${versionId}/questions/`);
         setQuestions(result.data);
-        console.log(result.data);
+        //console.log(result.data);
         const answersResult = await axios.get(`http://localhost:8080/study/${studyId}/survey/${surveyId}/version/${versionId}/questions/responselist/`);
         setResponses(answersResult.data);
         console.dir(answersResult.data);
+        console.log("response list: " + answersResult.data);
+
+        console.log("Surveys length: " + surveys.length);
+        for(let i = 0; i < surveys.length; i++) {
+            const responseCountResult = await axios.get(`http://localhost:8080/study/${studyId}/survey/${surveyId}/version/${versionId}/questions/responses/`)
+            responseCounts.push(responseCountResult.data);
+        } 
+
 
         for(let i = 0; i < surveys.length; i++) {
             if(surveys[i].version == versionId) {
@@ -120,14 +130,14 @@ export default function questionsList() {
     function getResponses(taskId) {
         var filteredResponses = [];
         for(let i = 0; i < responses.length; i++) {
-            console.log("Searching for Task Id: " + taskId + "...");
+            //console.log("Searching for Task Id: " + taskId + "...");
             if(responses[i].taskId == taskId) {
-                console.log("Found Task Id for response");
+                //console.log("Found Task Id for response");
                 filteredResponses.push(responses[i])
             }
         }
-        console.log("fR length: " + filteredResponses.length+ ", task_id: " + taskId);
-        console.log(filteredResponses);
+        //console.log("fR length: " + filteredResponses.length+ ", task_id: " + taskId);
+        //console.log(filteredResponses);
         return filteredResponses;
     }
 
@@ -162,7 +172,7 @@ export default function questionsList() {
                                 {surveys.map((survey, index) => (
                                     <Dropdown.Menu>
                                         {[...Array(survey.published_version)].map((x, version) => (
-                                            <Dropdown.Item href={`/study/${studyId}/survey/${surveyId}/version/${version+1}/questions/`} onClick={(e) => setVersion(survey, version+1)}>{(version+1) + " - " + survey.creationTime.substring(0,10)}</Dropdown.Item>
+                                            <Dropdown.Item href={`/study/${studyId}/survey/${surveyId}/version/${version+1}/questions/`} onClick={(e) => setVersion(survey, version+1)}>{(version+1) + " - " + survey.creationTime.substring(0,10) + " responses: " + responseCounts[version]}</Dropdown.Item>
                                         ))}
                                     </Dropdown.Menu>
                                 ))}
