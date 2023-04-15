@@ -22,7 +22,7 @@ public interface SurveyRepository extends JpaRepository<Survey, Long> {
     
     @Query(value = "SELECT * FROM survey_summary WHERE study_id = :studyId", nativeQuery=true)
     public List<Survey> getSurveyList(@Param("studyId") Integer studyId);
-
+    
     /*@Query(value = "SELECT id, published_version"
     		+ "FROM survey_summary, survey_task "
     		+ "WHERE survey_summary.id = survey_task.survey_id and survey_summary.published_version = survey_task.version", 

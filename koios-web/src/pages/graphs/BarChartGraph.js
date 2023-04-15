@@ -27,8 +27,8 @@ function responsesCounter(choices, responses, type){
 
     // console.log("choices in responsesCounter:");
     // console.log(choices);
-    console.log("responses in responsesCounter:");
-    console.log(responses);
+    //console.log("responses in responsesCounter:");
+    //console.log(responses);
     // console.log("responses length in responsesCounter:");
     // console.log(responses.length);
     // console.log("type in responsesCounter:");
@@ -127,8 +127,8 @@ const CustomToolTip = ({ active, payload, label, data}) => {
 
 export default function BarChartGraph(props) {
 
-    console.log("Responses:");
-    console.log(props.responses);
+    //console.log("Responses:");
+    //console.log(props.responses);
     var choices = props.data.answers.split("|");
     var data = responsesCounter(choices, props.responses, props.data.type);
 
