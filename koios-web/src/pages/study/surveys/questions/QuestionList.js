@@ -206,7 +206,7 @@ export default function questionsList() {
                         </td>) : <td></td>}
 
                         </tr>
-                          {q.type != "text" && q.type != "textarea" && (
+                          {q.type != "text" && q.type != "textarea" && q.type != "instruction" && q.type != "recording" && q.type != "fileuploader" ? (
                         <td colSpan="7">
                           <div>
                             <Collapse in={q.chart_is_visible}>
@@ -215,7 +215,7 @@ export default function questionsList() {
                               </div>
                             </Collapse>
                           </div>
-                        </td>)}
+                        </td>) : <td></td>}
                         </>
                     ))}
                 </tbody>
