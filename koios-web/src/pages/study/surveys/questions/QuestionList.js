@@ -185,11 +185,7 @@ export default function questionsList() {
                         </td>) : <td></td>}
 
                         </tr>
-<<<<<<< HEAD
                           {q.type != "text" && q.type != "textarea" && q.type != "instruction" && q.type != "recording" && q.type != "fileuploader" ? (
-=======
-                          {q.type !== "text" && q.type !== "textarea" && (
->>>>>>> origin/main
                         <td colSpan="7">
                           <div>
                             <Collapse in={q.chart_is_visible}>
