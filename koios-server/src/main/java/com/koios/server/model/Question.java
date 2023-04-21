@@ -1,8 +1,11 @@
 package com.koios.server.model;
 
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
 
 
 @Entity
@@ -22,16 +25,21 @@ public class Question {
     private Integer version;
 @Id
     @Column(name = "task_id")
-    private String taskId;
+    private Integer taskId;
 
 	@Column(name = "task_text")
     private String question;
     private String type;
     @Column(name = "possible_input")
-    private String answers;
+	private String answers;
+    
+    @Column(name = "child_triggering_input")
+	private String childTriggeringInput;
 
+    private Integer parent_task_id;
 
-    public Integer getStudyId() {
+    private Integer has_parent;
+	public Integer getStudyId() {
         return studyId;
     }
 
@@ -75,12 +83,36 @@ public class Question {
         this.answers = answers;
     }
     
-    public String getTaskId() {
+    public Integer getTaskId() {
 		return taskId;
 	}
 
-	public void setTaskId(String taskId) {
+	public void setTaskId(Integer taskId) {
 		this.taskId = taskId;
 	}
+	
+    public String getChildTriggeringInput() {
+		return childTriggeringInput;
+	}
+
+	public void setChildTriggeringInput(String childTriggeringInput) {
+		this.childTriggeringInput = childTriggeringInput;
+	}
+
+    public Integer getParent_task_id() {
+        return parent_task_id;
+    }
+
+    public void setParent_task_id(Integer parent_task_id) {
+        this.parent_task_id = parent_task_id;
+    }
+
+    public Integer getHas_parent() {
+        return has_parent;
+    }
+
+    public void setHas_parent(Integer has_parent) {
+        this.has_parent = has_parent;
+    }
 }
 

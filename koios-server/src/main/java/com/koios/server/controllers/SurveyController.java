@@ -1,6 +1,5 @@
 package com.koios.server.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,27 +28,21 @@ public class SurveyController {
      * Gets a list of all the {@code Survey} entries from the database
      * @return {@code List}
      */
-    @GetMapping("/study/{studyId}/surveys/")
+    @GetMapping("/study/{studyId}/surveylist/")
     public List<Survey> getSurveyList(@PathVariable Integer studyId) {
-        System.out.println("Retrieving all surveys...");
-
-        List<Survey> surveys = surveyRepository.findAll();
-        List<Survey> surveysInStudy = new ArrayList<>();
-
-       
-        for(Survey survey : surveys) {
-        	System.out.println("Current Survey Id: " + survey.getStudyId());
-        	if(survey.getStudyId() == studyId) {
-        		System.out.println("Found Matching Survey Id: " + survey.getStudyId());
-        		surveysInStudy.add(survey);
-        	}
-        }
-        return surveysInStudy;
+        List<Survey> surveys = surveyRepository.getSurveyList(studyId);
+        return surveys;
     }
     
-    public Survey getSurvey(@PathVariable Integer surveyId) {
-    	System.out.println("Finding specific survey: " + surveyId);
-    	//Survey survey = surveyRepository.findBySurveyId(surveyId);
-    	return null;
+    @GetMapping("/study/{studyId}/survey/{surveyId}")
+    public Survey getSurveyList(@PathVariable Integer studyId, @PathVariable Integer surveyId) {
+        List<Survey> surveys = surveyRepository.getSurveyList(studyId);
+        
+        for(Survey survey : surveys) {
+        	if(survey.getId() == surveyId)
+        		return survey;
+        }
+        return null;
     }
+    
 }

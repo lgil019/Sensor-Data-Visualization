@@ -2,7 +2,7 @@
 import React, {useState, useEffect} from "react";
 import {Link, useParams} from "react-router-dom";
 import axios from 'axios';
-import { Container, Table } from 'react-bootstrap';
+import { Container, Table, Dropdown } from 'react-bootstrap';
 
 /**
  * Displays a list of all the studies within the koios database.
@@ -15,7 +15,7 @@ export default function SurveyList() {
      * Create the study object here
      */
     const[surveys, setSurveys] = useState([{
-        "creation_time" : "",
+        "creationTime" : "",
         "creation_time_zone_offset" : "",
         "description" : "",
         "end_time" : "",
@@ -34,26 +34,19 @@ export default function SurveyList() {
         "start_time_zone_offset" : "",
         "state" : "",
         "study_id" : "",
+        "version" : "",
     }]);
 
     const  {studyId}  = useParams();
 
-
     const loadData = async () => {
-        const result = await axios.get(`http://localhost:8080/study/${studyId}/surveys/`);
+        const result = await axios.get(`http://localhost:8080/study/${studyId}/surveylist/`);
         setSurveys(result.data);
         console.log(result.data);
     }
 
-    const getSurveyButtonStyle = (responseCount) => {
-
-        console.log("count " + responseCount);
-        if(responseCount == 0) {
-            return "btn-secondary";
-        }
-        else {
-            return "btn-info";
-        }
+    const setVersion = (survey, version) => {
+        survey.version = version;
     }
 
     useEffect(()=>{
@@ -78,11 +71,8 @@ export default function SurveyList() {
                         </th>
                         <td align = "left">{survey.name}</td>
                         <td>
-                            <Link className="btn btn-success mx-2" to={`/study/${studyId}/survey/${survey.id}/questions/`}>
+                            <Link className="btn btn-success mx-2" to={`/study/${studyId}/survey/${survey.id}/version/${1}/questions/`}>
                                 Questions
-                            </Link>
-                            <Link className={`btn ${getSurveyButtonStyle(survey.responseCount)} mx-2`} to={`/study/${studyId}/survey/${survey.id}/responses/`}>
-                                Responses
                             </Link>
                         </td>
                         </tr>

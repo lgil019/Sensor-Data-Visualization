@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 /**
@@ -14,6 +15,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
+@IdClass(SurveyKey.class)
 @Table(name = "survey_summary")
 public class Survey {
 
@@ -26,7 +28,11 @@ public class Survey {
 	 */
 	@Column(name = "study_id")
 	private Integer studyId;
+	
 	private String name;
+	
+	@Column(name = "creation_time")
+	private String creationTime;
 
 	/**
 	 * The organization running the study
@@ -40,6 +46,9 @@ public class Survey {
 	
 	@Column(name = "response_count")
 	private Integer responseCount;
+
+	@Column(name = "published_version")
+	private Integer publishedVersion;
 
 	public Integer getId() {
 		return id;
@@ -63,6 +72,14 @@ public class Survey {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getCreationTime() {
+		return creationTime;
+	}
+
+	public void setCreationTime(String creationTime) {
+		this.creationTime = creationTime;
 	}
 
 	public String getStart_time() {
@@ -88,4 +105,13 @@ public class Survey {
 	public void setResponseCount(Integer responseCount) {
 		this.responseCount = responseCount;
 	}
+
+	public Integer getPublished_version() {
+		return publishedVersion;
+	}
+
+	public void setPublished_version(Integer published_version) {
+		this.publishedVersion = published_version;
+	}
+
 }

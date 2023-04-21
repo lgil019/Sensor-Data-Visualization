@@ -9,6 +9,7 @@ import SurveyList from './pages/study/surveys/SurveyList';
 import StudyList from './pages/study/StudyList';
 import Study from './pages/study/Study';
 import QuestionList from './pages/study/surveys/questions/QuestionList';
+import BarChartGraph from './pages/graphs/BarChartGraph';
 
 function App() {
  
@@ -22,7 +23,8 @@ function App() {
            <Route exact path="/study/studylist" element={<StudyList />} />
            <Route exact path="/study/:id" element={<Study />} />
            <Route exact path="/study/:studyId/surveys/surveylist/" element={<SurveyList/>}/>
-           <Route exact path="/study/:studyId/survey/:surveyId/questions/" element={<QuestionList/>}/>
+           <Route exact path="/study/:studyId/survey/:surveyId/version/:versionId/questions/" element={<QuestionList/>}/>
+           <Route exact path="/graph/" element={<BarChartGraph/>}/>
         </Routes>
      </Router>
     </div>

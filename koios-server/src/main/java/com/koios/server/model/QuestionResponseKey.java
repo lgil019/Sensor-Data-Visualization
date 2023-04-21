@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 
-public class QuestionKey implements Serializable {
+public class QuestionResponseKey implements Serializable {
 
 	/**
 	* 
@@ -15,8 +15,9 @@ public class QuestionKey implements Serializable {
 	@Column(name = "survey_id")
 	private Integer surveyId;
 
-	@SuppressWarnings("unused")
+	@Column(name = "version")
 	private Integer version;
+	
 	@Column(name = "task_id")
 	private Integer taskId;
 }
